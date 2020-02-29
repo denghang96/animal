@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangyaolang.animal.dao.mapper.AAnimalMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wangyaolang.animal.dao.entity.AAnimal">
+        <id column="id" property="id" />
+        <result column="animal_type" property="animalType" />
+        <result column="animal_no" property="animalNo" />
+        <result column="animal_name" property="animalName" />
+        <result column="animal_age" property="animalAge" />
+        <result column="animal_img" property="animalImg" />
+        <result column="animal_tiltle_img" property="animalTiltleImg" />
+        <result column="animal_features" property="animalFeatures" />
+        <result column="project_type" property="projectType" />
+        <result column="animal_status" property="animalStatus" />
+        <result column="animal_money" property="animalMoney" />
+        <result column="animal_date" property="animalDate" />
+    </resultMap>
+</mapper>
