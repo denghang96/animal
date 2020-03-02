@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 /**
  * <p>
- * 
+ * 寄样申请实体类
  * </p>
  *
  * @author wangyaolang

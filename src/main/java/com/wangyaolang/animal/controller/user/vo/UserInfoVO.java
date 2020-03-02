@@ -4,6 +4,9 @@ import com.wangyaolang.animal.controller.common.BaseVO;
 import com.wangyaolang.animal.controller.exception.ParamErrorException;
 import lombok.Data;
 
+/**
+ * 查询用户时返回的字段，不会包含有密码的信息
+ */
 @Data
 public class UserInfoVO extends BaseVO {
 

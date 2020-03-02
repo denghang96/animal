@@ -26,9 +26,6 @@ import java.util.List;
 
 /**
  * 对客户端请求的jwt token验证过滤器
- *
- * @author jiangzh
- * @Date 2019/3/23 14:04
  */
 @Slf4j
 public class AuthFilter extends OncePerRequestFilter {

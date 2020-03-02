@@ -16,4 +16,18 @@
         <result column="user_money" property="userMoney" />
         <result column="expire_time" property="expireTime" />
     </resultMap>
+
+    <!--根据条件查询用户列表 -->
+    <select id="getList" resultMap="BaseResultMap">
+        select * from a_user where 1 =1
+        <if test="queryListVo.userName != null and queryListVo.userName != ''">
+            AND user_name like CONCAT('%',#{queryListVo.userName},'%')
+        </if>
+        <if test="queryListVo.userTel != null and queryListVo.userTel != ''">
+            AND user_tel like CONCAT('%',#{queryListVo.userTel},'%')
+        </if>
+        <if test="queryListVo.userSex != null and queryListVo.userSex != ''">
+            AND user_sex = #{queryListVo.userSex}
+        </if>
+    </select>
 </mapper>

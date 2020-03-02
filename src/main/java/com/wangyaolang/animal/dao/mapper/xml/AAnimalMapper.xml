@@ -17,4 +17,31 @@
         <result column="animal_money" property="animalMoney" />
         <result column="animal_date" property="animalDate" />
     </resultMap>
+
+    <resultMap id="ListResultMap" type="com.wangyaolang.animal.controller.animal.vo.AnimalInfoVo">
+        <id column="id" property="id" />
+        <result column="animal_type" property="animalType" />
+        <result column="animal_no" property="animalNo" />
+        <result column="animal_name" property="animalName" />
+        <result column="animal_age" property="animalAge" />
+        <result column="project_type" property="projectType" />
+        <result column="animal_status" property="animalStatus" />
+    </resultMap>
+
+    <!--根据条件查询用户列表 -->
+    <select id="getList" resultType="ListResultMap">
+        select id, animal_type, animal_no, animal_name, animal_age, project_type, animal_status from a_animal where 1 =1
+        <if test="queryListVo.animalType != null and queryListVo.animalType != ''">
+            AND animal_type = #{queryListVo.animalType}
+        </if>
+        <if test="queryListVo.animalNo != null and queryListVo.animalNo != ''">
+            AND animal_no like CONCAT('%',#{queryListVo.animalNo},'%')
+        </if>
+        <if test="queryListVo.animalName != null and queryListVo.animalName != ''">
+            AND animal_name like CONCAT('%',#{queryListVo.animalName},'%')
+        </if>
+        <if test="queryListVo.animalStatus != null and queryListVo.animalStatus != ''">
+            AND animal_status = #{queryListVo.animalStatus}
+        </if>
+    </select>
 </mapper>

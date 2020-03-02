@@ -5,6 +5,9 @@ import com.wangyaolang.animal.controller.common.BaseVO;
 import com.wangyaolang.animal.controller.exception.ParamErrorException;
 import lombok.Data;
 
+/**
+ * 登录时请求的参数
+ */
 @Data
 public class AuthRequestVO extends BaseVO {
 

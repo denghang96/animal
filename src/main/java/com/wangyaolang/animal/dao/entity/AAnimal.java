@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 /**
  * <p>
- * 
+ * 动物基本信息实体类
  * </p>
  *
  * @author wangyaolang
