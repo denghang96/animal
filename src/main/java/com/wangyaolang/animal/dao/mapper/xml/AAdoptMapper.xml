@@ -17,4 +17,32 @@
         <result column="has_children" property="hasChildren" />
         <result column="traffi_type" property="traffiType" />
     </resultMap>
+
+    <resultMap id="ListResultMap" type="com.wangyaolang.animal.controller.adopt.vo.AdoptInfoVo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="animal_id" property="animalId" />
+        <result column="apply_date" property="applyDate" />
+        <result column="apply_status" property="applyStatus" />
+        <result column="adopt_tel" property="adoptTel" />
+        <result column="adopt_address" property="adoptAddress" />
+
+        <result column="adopt_reason" property="adoptReason" />
+        <result column="family_desc" property="familyDesc" />
+        <result column="family_img" property="familyImg" />
+        <result column="has_children" property="hasChildren" />
+        <result column="traffi_type" property="traffiType" />
+    </resultMap>
+
+    <!--根据查询条件获取列表-->
+    <select id="getList" resultType="ListResultMap">
+        select user_id, animal_id, apply_date, apply_status, adopt_tel, adopt_address, adopt_reason, family_desc, family_img, has_children, traffi_type
+        from a_adopt
+        <if test="queryListVo.applyDate != null and queryListVo.applyDate != ''">
+            AND apply_date = #{queryListVo.applyDate}
+        </if>
+        <if test="queryListVo.applyStatus != null and queryListVo.applyStatus != ''">
+            AND apply_status = #{queryListVo.applyStatus}
+        </if>
+    </select>
 </mapper>
