@@ -12,8 +12,7 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * @author jiangzh
- * @Date 2019/3/23 11:23:50
+ * 与token相关的工具类
  */
 @Component
 public class JwtTokenUtil {

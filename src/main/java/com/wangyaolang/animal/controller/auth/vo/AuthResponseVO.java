@@ -6,6 +6,9 @@ import com.wangyaolang.animal.controller.exception.ParamErrorException;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * 登录成功后响应的参数
+ */
 @Data
 @Builder
 public class AuthResponseVO extends BaseVO {

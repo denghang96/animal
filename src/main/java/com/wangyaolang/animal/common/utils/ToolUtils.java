@@ -1,5 +1,8 @@
 package com.wangyaolang.animal.common.utils;
 
+/**
+ * 判断字符串是否为空的工具类
+ */
 public final class ToolUtils {
 
     private ToolUtils(){};

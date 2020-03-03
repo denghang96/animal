@@ -33,8 +33,10 @@ public class AuthController {
     @RequestMapping(value = "auth", method = RequestMethod.POST)
     public BaseResponseVO auth(@RequestBody AuthRequestVO authRequestVO) throws ParamErrorException, CommonServiceExcetion {
 
+        //输入格式的检查
         authRequestVO.checkParam();
 
+        //检查账号密码是否正确
         boolean isValid = userService.userAuth(authRequestVO.getUserName()
                 , authRequestVO.getLoginPwd());
 
@@ -44,7 +46,7 @@ public class AuthController {
 
             AuthResponseVO authResponseVO = AuthResponseVO.builder()
                     .randomKey(randomKey)
-                    .token(token).build();
+                    .token(token).build();  //这段代码等价于AuthResponseVO authResponseVO = new AuthResponseVO(randomKey,token)
 
             return BaseResponseVO.success(authResponseVO);
         }else{
