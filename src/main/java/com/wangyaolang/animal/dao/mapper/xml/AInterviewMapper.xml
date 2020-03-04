@@ -12,4 +12,31 @@
         <result column="adop_animal_id" property="adopAnimalId" />
         <result column="adopt_desc" property="adoptDesc" />
     </resultMap>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="InterviewResultMap" type="com.wangyaolang.animal.controller.interview.vo.InterviewInfoVo">
+        <id column="id" property="id" />
+        <result column="user_name" property="userName" />
+        <result column="user_tel" property="userTel" />
+        <result column="user_id" property="userId" />
+        <result column="adopt_date" property="adoptDate" />
+        <result column="adop_animal_id" property="adopAnimalId" />
+        <result column="adopt_desc" property="adoptDesc" />
+    </resultMap>
+
+    <!--根据条件查询列表-->
+    <select id="getList" resultMap="InterviewResultMap">
+        select id, user_name, user_tel, user_id, adopt_date, adop_animal_id, adopt_desc
+        from a_interview
+        where 1 = 1
+        <if test="queryListVo.userId != null and queryListVo.userId != ''">
+            AND user_id = #{queryListVo.userId}
+        </if>
+        <if test="queryListVo.userName != null and queryListVo.userName != ''">
+            AND user_name = #{queryListVo.userName}
+        </if>
+        <if test="queryListVo.adoptDate != null and queryListVo.adoptDate != ''">
+            AND adopt_date = #{queryListVo.adoptDate}
+        </if>
+    </select>
 </mapper>

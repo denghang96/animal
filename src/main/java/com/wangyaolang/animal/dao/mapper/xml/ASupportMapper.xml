@@ -11,4 +11,27 @@
         <result column="help_money" property="helpMoney" />
         <result column="help_desc" property="helpDesc" />
     </resultMap>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="SupportInfoResultMap" type="com.wangyaolang.animal.controller.supprot.vo.SupportInfoVo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="animal_id" property="animalId" />
+        <result column="help_date" property="helpDate" />
+        <result column="help_money" property="helpMoney" />
+        <result column="help_desc" property="helpDesc" />
+    </resultMap>
+
+    <!--根据条件查询列表-->
+    <select id="getList" resultMap="SupportInfoResultMap">
+        select id, user_id, animal_id, help_date, help_money, help_desc
+        from a_support
+        where 1 = 1
+        <if test="queryListVo.userId != null and queryListVo.userId != ''">
+            AND user_id = #{queryListVo.userId}
+        </if>
+        <if test="queryListVo.helpDate != null and queryListVo.helpDate != ''">
+            AND help_date = #{queryListVo.helpDate}
+        </if>
+    </select>
 </mapper>

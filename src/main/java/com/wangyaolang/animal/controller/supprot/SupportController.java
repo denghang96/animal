@@ -1,79 +1,83 @@
-package com.wangyaolang.animal.controller.animal;
+package com.wangyaolang.animal.controller.supprot;
+
+
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wangyaolang.animal.controller.animal.vo.AnimalInfoVo;
-import com.wangyaolang.animal.controller.animal.vo.QueryListVo;
 import com.wangyaolang.animal.controller.common.BaseResponseVO;
+import com.wangyaolang.animal.controller.common.TraceUtil;
 import com.wangyaolang.animal.controller.exception.ParamErrorException;
-import com.wangyaolang.animal.dao.entity.AAnimal;
-import com.wangyaolang.animal.dao.entity.AUser;
-import com.wangyaolang.animal.service.animal.IAnimalService;
+import com.wangyaolang.animal.controller.supprot.vo.QueryListVo;
+import com.wangyaolang.animal.controller.supprot.vo.SupportInfoVo;
+import com.wangyaolang.animal.dao.entity.ASupport;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
+import com.wangyaolang.animal.service.support.ISupportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "animal/")
-public class AAnimalController {
 
+@RequestMapping("support/")
+@RestController
+public class SupportController {
     @Autowired
-    private IAnimalService animalService;
+    private ISupportService supportService;
+
 
     /**
-     * 新增动物
-     * @param aAnimal
+     * 添加助养信息
+     * @param supportInfoVo
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "add",method = RequestMethod.POST)
-    public BaseResponseVO add(@RequestBody AnimalInfoVo aAnimal) throws CommonServiceExcetion, ParamErrorException {
-        aAnimal.checkParam();
-
-        animalService.add(aAnimal);
-
+    public BaseResponseVO add(@RequestBody SupportInfoVo supportInfoVo) throws CommonServiceExcetion, ParamErrorException {
+        supportInfoVo.checkParam();
+        //获取当前登录用户的id
+        Integer userId = Integer.valueOf(TraceUtil.getUserId());
+        supportInfoVo.setUserId(userId);
+        supportService.add(supportInfoVo);
         return BaseResponseVO.success();
     }
 
     /**
-     * 批量删除动物信息
+     * 批量删除
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AAnimal> list) throws CommonServiceExcetion {
-        boolean isSuccess = animalService.removeByIds(list);
+    public BaseResponseVO del(@RequestParam(value = "delIds") List<ASupport> list) throws CommonServiceExcetion {
+        boolean isSuccess = supportService.removeByIds(list);
         if (!isSuccess) {
-            throw new CommonServiceExcetion(500,"删除动物时出错，请重试");
+            throw new CommonServiceExcetion(500,"删除失败，请重试");
         }
         return BaseResponseVO.success();
     }
 
     /**
-     * 根据id修改动物信息
+     * 根据id修改
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "update",method = RequestMethod.PUT)
-    public BaseResponseVO updateAnimal(@RequestBody AnimalInfoVo aAnimal) throws CommonServiceExcetion {
-        AnimalInfoVo animalInfoVo = animalService.updateAnimal(aAnimal);
-        return BaseResponseVO.success(animalInfoVo);
+    public BaseResponseVO updateSupport(@RequestBody SupportInfoVo supportInfoVo) throws CommonServiceExcetion {
+        SupportInfoVo foster = supportService.updateSupport(supportInfoVo);
+        return BaseResponseVO.success(foster);
     }
 
     /**
-     * 根据动物id查询动物
+     * 根据id查询
      * @param id
      * @return
      * @throws CommonServiceExcetion
      */
     @RequestMapping(value = "getById",method = RequestMethod.GET)
     public BaseResponseVO getById(Integer id) throws CommonServiceExcetion {
-        AAnimal aAnimal = animalService.getById(id);
-        return BaseResponseVO.success(aAnimal);
+        ASupport aSupport = supportService.getById(id);
+        return BaseResponseVO.success(aSupport);
     }
 
     /**
@@ -84,7 +88,7 @@ public class AAnimalController {
      */
     @RequestMapping(value = "getList",method = RequestMethod.GET)
     public BaseResponseVO getList(Page page, QueryListVo queryListVo) throws CommonServiceExcetion {
-        List<AnimalInfoVo> list = animalService.getList(page, queryListVo);
+        List<SupportInfoVo> list = supportService.getList(page, queryListVo);
         page.setRecords(list);
         return BaseResponseVO.success(page);
     }

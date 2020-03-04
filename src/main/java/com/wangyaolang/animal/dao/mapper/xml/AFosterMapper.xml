@@ -16,4 +16,36 @@
         <result column="user_tel" property="userTel" />
         <result column="apply_price" property="applyPrice" />
     </resultMap>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="FosterInfoResultMap" type="com.wangyaolang.animal.controller.foster.vo.FosterInfoVo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="animal_name" property="animalName" />
+        <result column="animal_type" property="animalType" />
+        <result column="animal_age" property="animalAge" />
+        <result column="apply_date" property="applyDate" />
+        <result column="animal_desc" property="animalDesc" />
+        <result column="animal_prove" property="animalProve" />
+        <result column="apply_status" property="applyStatus" />
+        <result column="user_tel" property="userTel" />
+        <result column="apply_price" property="applyPrice" />
+    </resultMap>
+    <select id="getList" resultMap="FosterInfoResultMap">
+        select user_id, animal_name, animal_type, animal_age, apply_date, animal_desc, animal_prove, apply_status,user_tel,apply_price
+        from a_foster
+        where 1 = 1
+        <if test="queryListVo.userId != null and queryListVo.userId != ''">
+            AND user_id = #{queryListVo.userId}
+        </if>
+        <if test="queryListVo.applyDate != null and queryListVo.applyDate != ''">
+            AND apply_date = #{queryListVo.applyDate}
+        </if>
+        <if test="queryListVo.animalName != null and queryListVo.animalName != ''">
+            AND animal_name like CONCAT('%',#{queryListVo.animalName},'%')
+        </if>
+        <if test="queryListVo.animalType != null and queryListVo.animalType != ''">
+            AND animal_type = #{queryListVo.animalType}
+        </if>
+    </select>
 </mapper>

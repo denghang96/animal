@@ -1,79 +1,82 @@
-package com.wangyaolang.animal.controller.animal;
+package com.wangyaolang.animal.controller.foster;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wangyaolang.animal.controller.animal.vo.AnimalInfoVo;
-import com.wangyaolang.animal.controller.animal.vo.QueryListVo;
 import com.wangyaolang.animal.controller.common.BaseResponseVO;
+import com.wangyaolang.animal.controller.common.TraceUtil;
 import com.wangyaolang.animal.controller.exception.ParamErrorException;
-import com.wangyaolang.animal.dao.entity.AAnimal;
-import com.wangyaolang.animal.dao.entity.AUser;
-import com.wangyaolang.animal.service.animal.IAnimalService;
+import com.wangyaolang.animal.controller.foster.vo.FosterInfoVo;
+import com.wangyaolang.animal.controller.foster.vo.QueryListVo;
+import com.wangyaolang.animal.dao.entity.AFoster;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
+import com.wangyaolang.animal.service.foster.IFosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
-@RequestMapping(value = "animal/")
-public class AAnimalController {
+@RequestMapping(value = "foster/")
+public class AFosterController {
 
     @Autowired
-    private IAnimalService animalService;
+    private IFosterService fosterService;
+
 
     /**
-     * 新增动物
-     * @param aAnimal
+     * 添加寄样申请
+     * @param fosterInfoVo
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "add",method = RequestMethod.POST)
-    public BaseResponseVO add(@RequestBody AnimalInfoVo aAnimal) throws CommonServiceExcetion, ParamErrorException {
-        aAnimal.checkParam();
-
-        animalService.add(aAnimal);
-
+    public BaseResponseVO add(@RequestBody FosterInfoVo fosterInfoVo) throws CommonServiceExcetion, ParamErrorException {
+        fosterInfoVo.checkParam();
+        //获取当前登录用户的id
+        Integer userId = Integer.valueOf(TraceUtil.getUserId());
+        fosterInfoVo.setUserId(userId);
+        fosterService.add(fosterInfoVo);
         return BaseResponseVO.success();
     }
 
     /**
-     * 批量删除动物信息
+     * 批量删除申请
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AAnimal> list) throws CommonServiceExcetion {
-        boolean isSuccess = animalService.removeByIds(list);
+    public BaseResponseVO del(@RequestParam(value = "delIds") List<AFoster> list) throws CommonServiceExcetion {
+        boolean isSuccess = fosterService.removeByIds(list);
         if (!isSuccess) {
-            throw new CommonServiceExcetion(500,"删除动物时出错，请重试");
+            throw new CommonServiceExcetion(500,"删除申请失败，请重试");
         }
         return BaseResponseVO.success();
     }
 
     /**
-     * 根据id修改动物信息
+     * 根据id修改申请
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "update",method = RequestMethod.PUT)
-    public BaseResponseVO updateAnimal(@RequestBody AnimalInfoVo aAnimal) throws CommonServiceExcetion {
-        AnimalInfoVo animalInfoVo = animalService.updateAnimal(aAnimal);
-        return BaseResponseVO.success(animalInfoVo);
+    public BaseResponseVO updateFoster(@RequestBody FosterInfoVo fosterInfoVo) throws CommonServiceExcetion {
+        FosterInfoVo foster = fosterService.updateFoster(fosterInfoVo);
+        return BaseResponseVO.success(foster);
     }
 
     /**
-     * 根据动物id查询动物
+     * 根据id查询申请
      * @param id
      * @return
      * @throws CommonServiceExcetion
      */
     @RequestMapping(value = "getById",method = RequestMethod.GET)
     public BaseResponseVO getById(Integer id) throws CommonServiceExcetion {
-        AAnimal aAnimal = animalService.getById(id);
-        return BaseResponseVO.success(aAnimal);
+        AFoster aFoster = fosterService.getById(id);
+        return BaseResponseVO.success(aFoster);
     }
 
     /**
@@ -84,7 +87,7 @@ public class AAnimalController {
      */
     @RequestMapping(value = "getList",method = RequestMethod.GET)
     public BaseResponseVO getList(Page page, QueryListVo queryListVo) throws CommonServiceExcetion {
-        List<AnimalInfoVo> list = animalService.getList(page, queryListVo);
+        List<FosterInfoVo> list = fosterService.getList(page, queryListVo);
         page.setRecords(list);
         return BaseResponseVO.success(page);
     }

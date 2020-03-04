@@ -1,90 +1,94 @@
-package com.wangyaolang.animal.controller.animal;
+package com.wangyaolang.animal.controller.comment;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wangyaolang.animal.controller.animal.vo.AnimalInfoVo;
-import com.wangyaolang.animal.controller.animal.vo.QueryListVo;
+import com.wangyaolang.animal.controller.comment.vo.CommentInfoVo;
+import com.wangyaolang.animal.controller.comment.vo.QueryListVo;
 import com.wangyaolang.animal.controller.common.BaseResponseVO;
+import com.wangyaolang.animal.controller.common.TraceUtil;
 import com.wangyaolang.animal.controller.exception.ParamErrorException;
-import com.wangyaolang.animal.dao.entity.AAnimal;
-import com.wangyaolang.animal.dao.entity.AUser;
-import com.wangyaolang.animal.service.animal.IAnimalService;
+import com.wangyaolang.animal.dao.entity.AComment;
+import com.wangyaolang.animal.service.comment.ICommentService;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 领养s申请控制层
+ */
+@RequestMapping(value = "comment/")
 @RestController
-@RequestMapping(value = "animal/")
-public class AAnimalController {
+public class ACommentController {
 
     @Autowired
-    private IAnimalService animalService;
+    private ICommentService commentService;
 
     /**
-     * 新增动物
-     * @param aAnimal
+     * 评论
+     * @param commentInfoVo
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "add",method = RequestMethod.POST)
-    public BaseResponseVO add(@RequestBody AnimalInfoVo aAnimal) throws CommonServiceExcetion, ParamErrorException {
-        aAnimal.checkParam();
-
-        animalService.add(aAnimal);
+    public BaseResponseVO add(@RequestBody CommentInfoVo commentInfoVo) throws CommonServiceExcetion, ParamErrorException {
+        commentInfoVo.checkParam();
+        Integer userId = Integer.valueOf(TraceUtil.getUserId());//获取当前登录用户的id
+        commentInfoVo.setUserId(userId);
+        commentService.add(commentInfoVo);
 
         return BaseResponseVO.success();
     }
 
     /**
-     * 批量删除动物信息
+     * 批量删除
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AAnimal> list) throws CommonServiceExcetion {
-        boolean isSuccess = animalService.removeByIds(list);
+    public BaseResponseVO del(@RequestParam(value = "delIds") List<AComment> list) throws CommonServiceExcetion {
+        boolean isSuccess = commentService.removeByIds(list);
         if (!isSuccess) {
-            throw new CommonServiceExcetion(500,"删除动物时出错，请重试");
+            throw new CommonServiceExcetion(500,"删除失败，请重试");
         }
         return BaseResponseVO.success();
     }
 
     /**
-     * 根据id修改动物信息
+     * 根据id修评论
      * @return
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
     @RequestMapping(value = "update",method = RequestMethod.PUT)
-    public BaseResponseVO updateAnimal(@RequestBody AnimalInfoVo aAnimal) throws CommonServiceExcetion {
-        AnimalInfoVo animalInfoVo = animalService.updateAnimal(aAnimal);
-        return BaseResponseVO.success(animalInfoVo);
+    public BaseResponseVO updateComment(@RequestBody CommentInfoVo comment) throws CommonServiceExcetion {
+        CommentInfoVo commentInfoVo = commentService.updateComment(comment);
+        return BaseResponseVO.success(commentInfoVo);
     }
 
     /**
-     * 根据动物id查询动物
+     * 根据id查询评论
      * @param id
      * @return
      * @throws CommonServiceExcetion
      */
     @RequestMapping(value = "getById",method = RequestMethod.GET)
     public BaseResponseVO getById(Integer id) throws CommonServiceExcetion {
-        AAnimal aAnimal = animalService.getById(id);
-        return BaseResponseVO.success(aAnimal);
+        AComment comment = commentService.getById(id);
+        return BaseResponseVO.success(comment);
     }
 
     /**
-     * 根据动物查询条件查询动物列表
+     * 根据查询条件查询动物列表
      * @param queryListVo
      * @return
      * @throws CommonServiceExcetion
      */
     @RequestMapping(value = "getList",method = RequestMethod.GET)
     public BaseResponseVO getList(Page page, QueryListVo queryListVo) throws CommonServiceExcetion {
-        List<AnimalInfoVo> list = animalService.getList(page, queryListVo);
+        List<CommentInfoVo> list = commentService.getList(page, queryListVo);
         page.setRecords(list);
         return BaseResponseVO.success(page);
     }

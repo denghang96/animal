@@ -9,4 +9,24 @@
         <result column="comment" property="comment" />
         <result column="amimal_id" property="amimalId" />
     </resultMap>
+
+    <resultMap id="BaseResultMap" type="com.wangyaolang.animal.controller.comment.vo.CommentInfoVo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="comment" property="comment" />
+        <result column="amimal_id" property="amimalId" />
+    </resultMap>
+
+    <!--根据条件查询列表-->
+    <select id="getList" resultMap="SupportInfoResultMap">
+        select id, user_id, comment, amimal_id
+        from a_comment
+        where 1 = 1
+        <if test="queryListVo.userId != null and queryListVo.userId != ''">
+            AND user_id = #{queryListVo.userId}
+        </if>
+        <if test="queryListVo.amimalId != null and queryListVo.amimalId != ''">
+            AND amimal_id = #{queryListVo.amimalId}
+        </if>
+    </select>
 </mapper>

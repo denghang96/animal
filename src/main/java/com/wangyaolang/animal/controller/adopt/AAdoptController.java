@@ -4,27 +4,25 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wangyaolang.animal.controller.adopt.vo.AdoptInfoVo;
 import com.wangyaolang.animal.controller.adopt.vo.QueryListVo;
 import com.wangyaolang.animal.controller.common.BaseResponseVO;
+import com.wangyaolang.animal.controller.common.TraceUtil;
 import com.wangyaolang.animal.controller.exception.ParamErrorException;
 import com.wangyaolang.animal.dao.entity.AAdopt;
 import com.wangyaolang.animal.service.adopt.IAdoptService;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * 领养实体类
+ * 领养s申请控制层
  */
 @RequestMapping(value = "adopt")
+@RestController
 public class AAdoptController {
 
     @Autowired
     private IAdoptService adoptService;
-
 
     /**
      * 添加申请
@@ -36,7 +34,8 @@ public class AAdoptController {
     @RequestMapping(value = "add",method = RequestMethod.POST)
     public BaseResponseVO add(@RequestBody AdoptInfoVo adoptInfoVo) throws CommonServiceExcetion, ParamErrorException {
         adoptInfoVo.checkParam();
-
+        Integer userId = Integer.valueOf(TraceUtil.getUserId());//获取当前登录用户的id
+        adoptInfoVo.setUserId(userId);
         adoptService.add(adoptInfoVo);
 
         return BaseResponseVO.success();
@@ -64,25 +63,25 @@ public class AAdoptController {
      * @throws ParamErrorException
      */
     @RequestMapping(value = "update",method = RequestMethod.PUT)
-    public BaseResponseVO updateAnimal(@RequestBody AdoptInfoVo adopt) throws CommonServiceExcetion {
-        AdoptInfoVo animalInfoVo = adoptService.updateAdopt(adopt);
-        return BaseResponseVO.success(animalInfoVo);
+    public BaseResponseVO updateAdopt(@RequestBody AdoptInfoVo adopt) throws CommonServiceExcetion {
+        AdoptInfoVo adoptInfoVo = adoptService.updateAdopt(adopt);
+        return BaseResponseVO.success(adoptInfoVo);
     }
 
     /**
-     * 根据动物id查询申请
+     * 根据id查询申请
      * @param id
      * @return
      * @throws CommonServiceExcetion
      */
-    @RequestMapping(value = "update",method = RequestMethod.GET)
-    public BaseResponseVO updateAnimal(Integer id) throws CommonServiceExcetion {
+    @RequestMapping(value = "getById",method = RequestMethod.GET)
+    public BaseResponseVO getById(Integer id) throws CommonServiceExcetion {
         AAdopt aAdopt = adoptService.getById(id);
         return BaseResponseVO.success(aAdopt);
     }
 
     /**
-     * 根据动物查询条件查询动物列表
+     * 根据查询条件查询动物列表
      * @param queryListVo
      * @return
      * @throws CommonServiceExcetion

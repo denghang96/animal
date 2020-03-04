@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service("userService")
+@Service("adoptService")
 public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements IAdoptService {
 
     @Resource
