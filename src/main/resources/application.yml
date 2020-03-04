@@ -30,3 +30,6 @@ logging:
   level.com.wangyaolang.animal: debug
   path: logs/
   file: animal.log
+
+file:
+  file-upload-path: /pic/images/
