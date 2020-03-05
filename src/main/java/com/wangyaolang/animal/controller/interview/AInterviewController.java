@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 领养s申请控制层
  */
-@RequestMapping(value = "adopt")
+@RequestMapping(value = "interview/")
 @RestController
 public class AInterviewController {
 

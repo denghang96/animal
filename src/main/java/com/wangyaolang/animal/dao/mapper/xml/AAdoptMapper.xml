@@ -35,7 +35,7 @@
     </resultMap>
 
     <!--根据查询条件获取列表-->
-    <select id="getList" resultType="ListResultMap">
+    <select id="getList" resultMap="ListResultMap">
         select user_id, animal_id, apply_date, apply_status, adopt_tel, adopt_address, adopt_reason, family_desc, family_img, has_children, traffi_type
         from a_adopt
         <if test="queryListVo.applyDate != null and queryListVo.applyDate != ''">

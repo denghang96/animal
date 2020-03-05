@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement //开启事务
-@MapperScan(basePackages = {"com.wangyaolang.animal.dao.mapper","com.wangyaolang.animal.example.dao"})//扫描mapper文件
+@MapperScan(basePackages = {"com.wangyaolang.animal.dao.mapper"})//扫描mapper文件
 public class MybatisPlusConfig {
 
     @Bean

@@ -10,7 +10,7 @@
         <result column="amimal_id" property="amimalId" />
     </resultMap>
 
-    <resultMap id="BaseResultMap" type="com.wangyaolang.animal.controller.comment.vo.CommentInfoVo">
+    <resultMap id="CommentInfoResultMap" type="com.wangyaolang.animal.controller.comment.vo.CommentInfoVo">
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
         <result column="comment" property="comment" />
@@ -18,7 +18,7 @@
     </resultMap>
 
     <!--根据条件查询列表-->
-    <select id="getList" resultMap="SupportInfoResultMap">
+    <select id="getList" resultMap="CommentInfoResultMap">
         select id, user_id, comment, amimal_id
         from a_comment
         where 1 = 1
