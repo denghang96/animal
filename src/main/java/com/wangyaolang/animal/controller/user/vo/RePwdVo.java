@@ -22,7 +22,10 @@ public class RePwdVo extends BaseVO {
      * 新密码
      */
     private String loginPwd;
-
+    /**
+     * 用户类型 1.管理员 2.会员
+     */
+    private String userType;
 
     @Override
     public void checkParam() throws ParamErrorException {

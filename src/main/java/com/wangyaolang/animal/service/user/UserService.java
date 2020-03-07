@@ -70,7 +70,7 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
      * @throws CommonServiceExcetion
      */
     @Override
-    public boolean userAuth(String userName, String userPwd) throws CommonServiceExcetion {
+    public boolean userAuth(String userName, String userPwd, String userType) throws CommonServiceExcetion {
         if(ToolUtils.isEmpty(userName) || ToolUtils.isEmpty(userPwd)){
             throw new CommonServiceExcetion(400,"用户验证失败！");
         }
@@ -84,7 +84,7 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
             // 2、如果存在，则判断密码是否正确
             AUser aUser = list.get(0);
             // 3、对用户输入的密码进行MD5加密，然后判断两个密码是否相等
-            if(MD5Util.encrypt(userPwd).equals(aUser.getLoginPwd())){
+            if(MD5Util.encrypt(userPwd).equals(aUser.getLoginPwd()) && userType.equals(aUser.getUserType())){
                 return true;
             }
         }
@@ -135,7 +135,7 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
         BeanUtils.copyProperties(rePwdVo,aUser);
         if(ToolUtils.isNotEmpty(rePwdVo.getOldPwd())){ //旧密码不为空，说明是修改密码
             AUser preAUser = aUserMapper.selectById(rePwdVo.getId());
-            boolean isSuccess = userAuth(preAUser.getUserName(),rePwdVo.getOldPwd());
+            boolean isSuccess = userAuth(preAUser.getUserName(),rePwdVo.getOldPwd(),rePwdVo.getUserType());
             if (isSuccess) {
                 aUser.setLoginPwd(MD5Util.encrypt(rePwdVo.getLoginPwd()));//新密码进行加密
                 aUserMapper.updateById(aUser);

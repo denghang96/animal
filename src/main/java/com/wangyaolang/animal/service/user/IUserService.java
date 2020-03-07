@@ -23,7 +23,7 @@ public interface IUserService extends IService<AUser> {
     /*
         用户名密码验证
      */
-    boolean userAuth(String userName,String userPwd) throws CommonServiceExcetion;
+    boolean userAuth(String userName,String userPwd,String userType) throws CommonServiceExcetion;
 
     /*
         获取用户信息

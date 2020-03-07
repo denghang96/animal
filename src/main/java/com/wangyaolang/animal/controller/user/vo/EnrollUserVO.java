@@ -13,7 +13,7 @@ public class EnrollUserVO extends BaseVO {
     private String userName;
     private String loginPwd;
     private String userTel;
-
+    private String userType;
     @Override
     public void checkParam() throws ParamErrorException {
 

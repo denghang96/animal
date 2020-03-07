@@ -38,7 +38,7 @@ public class AuthController {
 
         //检查账号密码是否正确
         boolean isValid = userService.userAuth(authRequestVO.getUserName()
-                , authRequestVO.getLoginPwd());
+                , authRequestVO.getLoginPwd(), authRequestVO.getUserType());
 
         if(isValid){
             String randomKey = jwtTokenUtil.getRandomKey();

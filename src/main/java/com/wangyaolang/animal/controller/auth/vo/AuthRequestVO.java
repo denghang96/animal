@@ -13,6 +13,7 @@ public class AuthRequestVO extends BaseVO {
 
     private String userName;
     private String loginPwd;
+    private String userType;
 
     @Override
     public void checkParam() throws ParamErrorException {
