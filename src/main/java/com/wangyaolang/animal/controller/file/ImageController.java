@@ -17,7 +17,7 @@ import java.util.UUID;
  * 文件上传下载的Controller
  */
 @RestController
-@RequestMapping("/api/image")
+@RequestMapping("image")
 public class ImageController {
 
   @Value("${file.file-upload-path}")
@@ -45,7 +45,7 @@ public class ImageController {
     }
     file.transferTo(new File(filePath + fileName));
     //返回文件存储路径
-    return "/images/" + filePath + fileName;
+    return filePath + fileName;
   }
 
   /**
@@ -53,9 +53,9 @@ public class ImageController {
    *
    * @throws IOException String
    */
-  @RequestMapping("/uploadImages")
+  @RequestMapping(path = "/uploadImages", method = RequestMethod.POST)
   //上传的文件会转换成MultipartFile对象，file名字对应html中上传控件的name
-  public BaseResponseVO uploadImages(@RequestParam("files") MultipartFile[] files)
+  public BaseResponseVO uploadImages(@RequestBody MultipartFile[] files)
       throws IOException {
     if (files.length == 0) {
       return BaseResponseVO.serviceFailed("请选择要上传的文件");
@@ -80,9 +80,9 @@ public class ImageController {
 
   @RequestMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
   @ResponseBody
-  public byte[] showIamge(String path) throws Exception {
-    String root = "/pic";
-    File file = new File(root + path);
+  public byte[] showIamge(@RequestParam("path") String path) throws Exception {
+    //String root = "/pic";
+    File file = new File(path);
     FileInputStream inputStream = new FileInputStream(file);
     byte[] bytes = new byte[inputStream.available()];
     inputStream.read(bytes, 0, inputStream.available());
@@ -96,7 +96,7 @@ public class ImageController {
    * 回显图片
    */
   @RequestMapping("/showImage")
-  public void download(String path, HttpServletResponse response) {
+  public void download(@RequestParam("path") String path, HttpServletResponse response) {
     try {
       response.setContentType("image/jpeg/jpg/png/gif/bmp/tiff/svg");
       File file = new File(path);

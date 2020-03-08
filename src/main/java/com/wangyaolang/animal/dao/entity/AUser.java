@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author wangyaolang
  * @since 2020-02-29
  */
-public class AUser extends Model<AUser> {
+public class AUser extends Model<AUser> implements Serializable{
 
     private static final long serialVersionUID = 1L;
 

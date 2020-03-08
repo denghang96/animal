@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +36,6 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
         AUser aUser = new AUser();
         BeanUtils.copyProperties(enrollUserVO,aUser); // 讲两个对象中属性名想同的属性值进行拷贝，就不用一个一个手动先get再set
         aUser.setLoginPwd(MD5Util.encrypt(enrollUserVO.getLoginPwd()));//密码进行加密
-
         // 数据插入
         int isSuccess = aUserMapper.insert(aUser);
 
@@ -109,6 +109,12 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
         }
     }
 
+    /**
+     * 根据id更新用户信息
+     * @param userInfoVO
+     * @return
+     * @throws CommonServiceExcetion
+     */
     @Override
     @Transactional
     public UserInfoVO updateUserInfo(UserInfoVO userInfoVO) throws CommonServiceExcetion {
@@ -118,6 +124,12 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
         return userInfoVO;
     }
 
+    /**
+     * 查询用户列表
+     * @param page
+     * @param queryListVo
+     * @return
+     */
     @Override
     public List<UserInfoVO> getList(Page page, QueryListVo queryListVo) {
         return aUserMapper.getList(page,queryListVo);
@@ -150,6 +162,11 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
         return false;
     }
 
+    /**
+     * 设置支付密码
+     * @param payPwdVo
+     * @return
+     */
     @Override
     public boolean setPayPwd(PayPwdVo payPwdVo) {
         AUser aUser = new AUser();
@@ -172,5 +189,11 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean deleteBatchByIds(ArrayList<Integer> delIds) {
+
+        return aUserMapper.deleteBatchIds(delIds)>0?true:false;
     }
 }

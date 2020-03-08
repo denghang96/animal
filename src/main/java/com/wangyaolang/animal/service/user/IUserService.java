@@ -6,6 +6,7 @@ import com.wangyaolang.animal.controller.user.vo.*;
 import com.wangyaolang.animal.dao.entity.AUser;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IUserService extends IService<AUser> {
@@ -51,4 +52,11 @@ public interface IUserService extends IService<AUser> {
     boolean setPayPwd(PayPwdVo payPwdVo);
 
     boolean consum(PayPwdVo payPwdVo);
+
+    /**
+     * 批量删除
+     * @param delIds
+     * @return
+     */
+    boolean deleteBatchByIds(ArrayList<Integer> delIds);
 }

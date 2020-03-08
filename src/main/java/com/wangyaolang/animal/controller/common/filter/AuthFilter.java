@@ -46,7 +46,7 @@ public class AuthFilter extends OncePerRequestFilter {
         if (request.getServletPath().equals("/login/auth")
                 || request.getServletPath().equals("/user/check")
                 || request.getServletPath().equals("/user/register")
-                || request.getServletPath().equals("/swagger-ui.html")
+                || request.getServletPath().startsWith("/image")
                 || request.getServletPath().startsWith("/swagger-resources")
                 || request.getServletPath().startsWith("/v2/api-docs")
                 || request.getServletPath().startsWith("/webjars/springfox-swagger-ui/")

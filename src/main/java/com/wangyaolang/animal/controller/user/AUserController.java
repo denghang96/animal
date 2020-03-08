@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,6 +33,9 @@ public class AUserController {
     public BaseResponseVO register(@RequestBody EnrollUserVO enrollUserVO) throws CommonServiceExcetion, ParamErrorException {
         enrollUserVO.checkParam();
 
+        if(userService.checkUserName(enrollUserVO.getUserName() )) {
+            return BaseResponseVO.serviceFailed("用户名已存在");
+        }
         userService.userEnroll(enrollUserVO);
 
         return BaseResponseVO.success();
@@ -43,9 +47,9 @@ public class AUserController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AUser> list) throws CommonServiceExcetion {
-        boolean isSuccess = userService.removeByIds(list);
+    @RequestMapping(value = "del",method = RequestMethod.POST)
+    public BaseResponseVO del(@RequestBody ArrayList<Integer> delIds) throws CommonServiceExcetion {
+        boolean isSuccess = userService.deleteBatchByIds(delIds);
         if (!isSuccess) {
             throw new CommonServiceExcetion(500,"删除用户时出错，请重试");
         }
@@ -58,7 +62,7 @@ public class AUserController {
      * @return
      * @throws CommonServiceExcetion
      */
-    @RequestMapping(value = "update",method = RequestMethod.PUT)
+    @RequestMapping(value = "update",method = RequestMethod.POST)
     public BaseResponseVO del(@RequestBody UserInfoVO userInfoVO) throws CommonServiceExcetion {
         UserInfoVO u = userService.updateUserInfo(userInfoVO);
         return BaseResponseVO.success(u);

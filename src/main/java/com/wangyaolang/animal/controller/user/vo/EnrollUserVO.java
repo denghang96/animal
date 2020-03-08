@@ -14,6 +14,8 @@ public class EnrollUserVO extends BaseVO {
     private String loginPwd;
     private String userTel;
     private String userType;
+    private Integer userMoney = 0;
+    private String expireTime = "1970-01-01";
     @Override
     public void checkParam() throws ParamErrorException {
 

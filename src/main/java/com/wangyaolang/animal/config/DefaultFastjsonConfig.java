@@ -58,7 +58,9 @@ public class DefaultFastjsonConfig {
      */
     public List<MediaType> getSupportedMediaType() {
         ArrayList<MediaType> mediaTypes = new ArrayList<>();
-        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+//        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+//        mediaTypes.add(MediaType.MULTIPART_FORM_DATA);
+        mediaTypes.add(MediaType.ALL);
         return mediaTypes;
     }
 

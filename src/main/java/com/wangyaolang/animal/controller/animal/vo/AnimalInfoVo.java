@@ -11,7 +11,7 @@ public class AnimalInfoVo extends BaseVO {
 
     private String animalType;
 
-    private Integer animalNo;
+    private String animalNo;
 
     private String animalName;
 
@@ -23,9 +23,9 @@ public class AnimalInfoVo extends BaseVO {
 
     private String animalFeatures;
 
-    private Integer projectType;
+    private String projectType;
 
-    private Integer animalStatus;
+    private String animalStatus;
 
     private Integer animalMoney;
 

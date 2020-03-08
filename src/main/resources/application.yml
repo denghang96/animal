@@ -32,4 +32,4 @@ logging:
   file: animal.log
 
 file:
-  file-upload-path: /pic/images/
+  file-upload-path: G:/animalimg/
