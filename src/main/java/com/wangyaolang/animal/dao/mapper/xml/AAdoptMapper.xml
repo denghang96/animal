@@ -36,13 +36,19 @@
 
     <!--根据查询条件获取列表-->
     <select id="getList" resultMap="ListResultMap">
-        select user_id, animal_id, apply_date, apply_status, adopt_tel, adopt_address, adopt_reason, family_desc, family_img, has_children, traffi_type
-        from a_adopt
+        select
+            c.id, user_id, animal_id, apply_date, apply_status, adopt_tel, adopt_address, adopt_reason,
+            family_desc, family_img, has_children, traffi_type,a.user_name,b.animal_no,b.animal_name
+        from
+            a_adopt c
+            left join a_animal b on c.animal_id = b.id
+            left join a_user a on c.user_id = a.id
+        where 1 = 1
         <if test="queryListVo.applyDate != null and queryListVo.applyDate != ''">
-            AND apply_date = #{queryListVo.applyDate}
+            AND c.apply_date = #{queryListVo.applyDate}
         </if>
         <if test="queryListVo.applyStatus != null and queryListVo.applyStatus != ''">
-            AND apply_status = #{queryListVo.applyStatus}
+            AND c.apply_status = #{queryListVo.applyStatus}
         </if>
     </select>
 </mapper>

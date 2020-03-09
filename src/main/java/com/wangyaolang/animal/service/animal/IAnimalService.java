@@ -7,6 +7,7 @@ import com.wangyaolang.animal.controller.animal.vo.QueryListVo;
 import com.wangyaolang.animal.dao.entity.AAnimal;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IAnimalService extends IService<AAnimal> {
@@ -30,4 +31,11 @@ public interface IAnimalService extends IService<AAnimal> {
      * @return
      */
     List<AnimalInfoVo> getList(Page page, QueryListVo queryListVo);
+
+    /**
+     * 根据id批量删除
+     * @param delIds
+     * @return
+     */
+    boolean deleteBatchByIds(ArrayList<Integer> delIds);
 }

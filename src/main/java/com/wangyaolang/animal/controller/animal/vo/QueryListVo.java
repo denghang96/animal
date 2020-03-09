@@ -13,7 +13,7 @@ public class QueryListVo extends BaseVO {
     /**
      * 动物编号
      */
-    private Integer animalNo;
+    private String animalNo;
     /**
      * 动物昵称
      */
@@ -22,7 +22,7 @@ public class QueryListVo extends BaseVO {
     /**
      * 动物状态 已领养，待领养，可助养
      */
-    private Integer animalStatus;
+    private String animalStatus;
 
     @Override
     public void checkParam() throws ParamErrorException {

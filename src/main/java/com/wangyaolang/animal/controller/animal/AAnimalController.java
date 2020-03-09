@@ -12,6 +12,7 @@ import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -43,9 +44,9 @@ public class AAnimalController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AAnimal> list) throws CommonServiceExcetion {
-        boolean isSuccess = animalService.removeByIds(list);
+    @RequestMapping(value = "del",method = RequestMethod.POST)
+    public BaseResponseVO del(@RequestBody ArrayList<Integer> delIds) throws CommonServiceExcetion {
+        boolean isSuccess = animalService.deleteBatchByIds(delIds);
         if (!isSuccess) {
             throw new CommonServiceExcetion(500,"删除动物时出错，请重试");
         }
@@ -58,7 +59,7 @@ public class AAnimalController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "update",method = RequestMethod.PUT)
+    @RequestMapping(value = "update",method = RequestMethod.POST)
     public BaseResponseVO updateAnimal(@RequestBody AnimalInfoVo aAnimal) throws CommonServiceExcetion {
         AnimalInfoVo animalInfoVo = animalService.updateAnimal(aAnimal);
         return BaseResponseVO.success(animalInfoVo);

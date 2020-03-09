@@ -29,8 +29,8 @@
     </resultMap>
 
     <!--根据条件查询用户列表 -->
-    <select id="getList" resultMap="ListResultMap">
-        select id, animal_type, animal_no, animal_name, animal_age, project_type, animal_status from a_animal where 1 =1
+    <select id="getList" resultType="com.wangyaolang.animal.controller.animal.vo.AnimalInfoVo">
+        select * from a_animal where 1 =1
         <if test="queryListVo.animalType != null and queryListVo.animalType != ''">
             AND animal_type = #{queryListVo.animalType}
         </if>

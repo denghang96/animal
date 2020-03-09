@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service(("animalService"))
@@ -57,5 +58,10 @@ public class AnimalService extends ServiceImpl<AAnimalMapper, AAnimal> implement
     @Override
     public List<AnimalInfoVo> getList(Page page, QueryListVo queryListVo) {
         return animalMapper.getList(page, queryListVo);
+    }
+
+    @Override
+    public boolean deleteBatchByIds(ArrayList<Integer> delIds) {
+        return animalMapper.deleteBatchIds(delIds)>0?true:false;
     }
 }

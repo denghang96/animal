@@ -81,7 +81,7 @@ public class AAdoptController {
     }
 
     /**
-     * 根据查询条件查询动物列表
+     * 根据查询条件查询申请列表
      * @param queryListVo
      * @return
      * @throws CommonServiceExcetion

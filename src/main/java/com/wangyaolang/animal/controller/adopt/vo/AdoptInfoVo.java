@@ -31,6 +31,14 @@ public class AdoptInfoVo extends BaseVO {
 
     private String traffiType;
 
+    //以下为关联查询的属性
+
+    private String userName;
+
+    private String animalName;
+
+    private String animalNo;
+
     @Override
     public void checkParam() throws ParamErrorException {
 
