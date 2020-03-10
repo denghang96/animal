@@ -68,7 +68,6 @@ public final class BaseResponseVO<M> {
         BaseResponseVO responseVO = new BaseResponseVO();
         responseVO.setStatus(700);
         responseVO.setMsg("用户需要登陆");
-
         return responseVO;
     }
 

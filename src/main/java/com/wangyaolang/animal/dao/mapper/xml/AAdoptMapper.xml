@@ -16,6 +16,7 @@
         <result column="family_img" property="familyImg" />
         <result column="has_children" property="hasChildren" />
         <result column="traffi_type" property="traffiType" />
+        <result column="opinion" property="opinion" />
     </resultMap>
 
     <resultMap id="ListResultMap" type="com.wangyaolang.animal.controller.adopt.vo.AdoptInfoVo">
@@ -32,13 +33,14 @@
         <result column="family_img" property="familyImg" />
         <result column="has_children" property="hasChildren" />
         <result column="traffi_type" property="traffiType" />
+        <result column="opinion" property="opinion" />
     </resultMap>
 
     <!--根据查询条件获取列表-->
     <select id="getList" resultMap="ListResultMap">
         select
             c.id, user_id, animal_id, apply_date, apply_status, adopt_tel, adopt_address, adopt_reason,
-            family_desc, family_img, has_children, traffi_type,a.user_name,b.animal_no,b.animal_name
+            family_desc, family_img, has_children, traffi_type,a.user_name,b.animal_no,b.animal_name,opinion
         from
             a_adopt c
             left join a_animal b on c.animal_id = b.id

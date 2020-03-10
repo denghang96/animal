@@ -15,11 +15,11 @@ public class AdoptInfoVo extends BaseVO {
 
     private String applyDate;
 
-    private Integer applyStatus;
+    private String applyStatus;
 
     private String adoptTel;
 
-    private Integer adoptAddress;
+    private String adoptAddress;
 
     private String adoptReason;
 
@@ -38,6 +38,8 @@ public class AdoptInfoVo extends BaseVO {
     private String animalName;
 
     private String animalNo;
+
+    private String opinion;
 
     @Override
     public void checkParam() throws ParamErrorException {

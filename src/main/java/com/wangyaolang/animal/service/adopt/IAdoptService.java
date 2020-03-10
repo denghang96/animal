@@ -32,4 +32,11 @@ public interface IAdoptService extends IService<AAdopt> {
      * @return
      */
     List<AdoptInfoVo> getList(Page page, QueryListVo queryListVo);
+
+    /**
+     * 审核领养申请
+     * @param adopt
+     * @return
+     */
+    AdoptInfoVo sh(AdoptInfoVo adopt) throws CommonServiceExcetion;
 }

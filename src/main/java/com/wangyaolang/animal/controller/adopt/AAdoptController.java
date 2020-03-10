@@ -47,7 +47,7 @@ public class AAdoptController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "del",method = RequestMethod.DELETE)
+    @RequestMapping(value = "del",method = RequestMethod.POST)
     public BaseResponseVO del(@RequestParam(value = "delIds") List<AAdopt> list) throws CommonServiceExcetion {
         boolean isSuccess = adoptService.removeByIds(list);
         if (!isSuccess) {
@@ -62,7 +62,7 @@ public class AAdoptController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "update",method = RequestMethod.PUT)
+    @RequestMapping(value = "update",method = RequestMethod.POST)
     public BaseResponseVO updateAdopt(@RequestBody AdoptInfoVo adopt) throws CommonServiceExcetion {
         AdoptInfoVo adoptInfoVo = adoptService.updateAdopt(adopt);
         return BaseResponseVO.success(adoptInfoVo);
@@ -91,5 +91,17 @@ public class AAdoptController {
         List<AdoptInfoVo> list = adoptService.getList(page, queryListVo);
         page.setRecords(list);
         return BaseResponseVO.success(page);
+    }
+
+    /**
+     * 审核申请
+     * @return
+     * @throws CommonServiceExcetion
+     * @throws ParamErrorException
+     */
+    @RequestMapping(value = "sh",method = RequestMethod.POST)
+    public BaseResponseVO sh(@RequestBody AdoptInfoVo adopt) throws CommonServiceExcetion {
+        AdoptInfoVo adoptInfoVo = adoptService.sh(adopt);
+        return BaseResponseVO.success(adoptInfoVo);
     }
 }

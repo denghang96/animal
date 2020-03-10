@@ -25,11 +25,11 @@ public class AAdopt extends Model<AAdopt> {
 
     private String applyDate;
 
-    private Integer applyStatus;
+    private String applyStatus;
 
     private String adoptTel;
 
-    private Integer adoptAddress;
+    private String adoptAddress;
 
     private String adoptReason;
 
@@ -40,6 +40,8 @@ public class AAdopt extends Model<AAdopt> {
     private String hasChildren;
 
     private String traffiType;
+
+    private String opinion;
 
     public Integer getId() {
         return id;
@@ -73,11 +75,11 @@ public class AAdopt extends Model<AAdopt> {
         this.applyDate = applyDate;
     }
 
-    public Integer getApplyStatus() {
+    public String getApplyStatus() {
         return applyStatus;
     }
 
-    public void setApplyStatus(Integer applyStatus) {
+    public void setApplyStatus(String applyStatus) {
         this.applyStatus = applyStatus;
     }
 
@@ -89,11 +91,11 @@ public class AAdopt extends Model<AAdopt> {
         this.adoptTel = adoptTel;
     }
 
-    public Integer getAdoptAddress() {
+    public String getAdoptAddress() {
         return adoptAddress;
     }
 
-    public void setAdoptAddress(Integer adoptAddress) {
+    public void setAdoptAddress(String adoptAddress) {
         this.adoptAddress = adoptAddress;
     }
 
@@ -137,6 +139,12 @@ public class AAdopt extends Model<AAdopt> {
         this.traffiType = traffiType;
     }
 
+    public String getOpinion() { return opinion; }
+
+    public void setOpinion(String opinion) {
+        this.opinion = opinion;
+    }
+
     @Override
     protected Serializable pkVal() {
         return null;
@@ -157,6 +165,7 @@ public class AAdopt extends Model<AAdopt> {
         ", familyImg=" + familyImg +
         ", hasChildren=" + hasChildren +
         ", traffiType=" + traffiType +
+        ", opinion=" + opinion +
         "}";
     }
 }
