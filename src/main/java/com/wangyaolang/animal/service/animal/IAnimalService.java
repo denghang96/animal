@@ -32,6 +32,7 @@ public interface IAnimalService extends IService<AAnimal> {
      */
     List<AnimalInfoVo> getList(Page page, QueryListVo queryListVo);
 
+
     /**
      * 根据id批量删除
      * @param delIds

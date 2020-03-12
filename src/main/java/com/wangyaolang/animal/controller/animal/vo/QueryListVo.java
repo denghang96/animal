@@ -22,7 +22,7 @@ public class QueryListVo extends BaseVO {
     /**
      * 动物状态 已领养，待领养，可助养
      */
-    private String animalStatus;
+    private String[] animalStatus;
 
     @Override
     public void checkParam() throws ParamErrorException {

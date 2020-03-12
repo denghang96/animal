@@ -55,6 +55,12 @@ public class AnimalService extends ServiceImpl<AAnimalMapper, AAnimal> implement
         return animalInfoVo;
     }
 
+    /**
+     * 管理员处查询动物列表
+     * @param page
+     * @param queryListVo
+     * @return
+     */
     @Override
     public List<AnimalInfoVo> getList(Page page, QueryListVo queryListVo) {
         return animalMapper.getList(page, queryListVo);
@@ -64,4 +70,5 @@ public class AnimalService extends ServiceImpl<AAnimalMapper, AAnimal> implement
     public boolean deleteBatchByIds(ArrayList<Integer> delIds) {
         return animalMapper.deleteBatchIds(delIds)>0?true:false;
     }
+
 }

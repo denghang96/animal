@@ -1,5 +1,6 @@
 package com.wangyaolang.animal.service.user;
 
+import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -171,6 +172,7 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
     public boolean setPayPwd(PayPwdVo payPwdVo) {
         AUser aUser = new AUser();
         BeanUtils.copyProperties(payPwdVo,aUser); // 讲两个对象中属性名想同的属性值进行拷贝，就不用一个一个手动先get再set
+        aUser.setPayPwd(MD5Util.encrypt(aUser.getPayPwd()));
         int i = aUserMapper.updateById(aUser);
         return i > 0?true:false;
     }
@@ -193,7 +195,12 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
 
     @Override
     public boolean deleteBatchByIds(ArrayList<Integer> delIds) {
-
         return aUserMapper.deleteBatchIds(delIds)>0?true:false;
+    }
+
+    @Override
+    public boolean checkPayPwd(Integer userId) {
+        AUser user = this.getById(userId);
+        return StringUtils.isEmpty(user.getPayPwd());
     }
 }

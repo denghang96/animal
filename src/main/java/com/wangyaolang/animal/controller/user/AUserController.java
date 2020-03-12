@@ -137,6 +137,21 @@ public class AUserController {
     }
 
     /**
+     * 检查是否设置了支付密码
+     * @return
+     * @throws CommonServiceExcetion
+     */
+    @RequestMapping(value = "checkPayPwd")
+    public BaseResponseVO checkPayPwd() throws CommonServiceExcetion {
+        Integer userId = Integer.valueOf(TraceUtil.getUserId());//获取当前登录用户的id
+        boolean isEmpty = userService.checkPayPwd(userId);
+        if (isEmpty) {
+            return BaseResponseVO.serviceFailed("未设置支付密码");
+        }
+        return BaseResponseVO.success();
+    }
+
+    /**
      * 消费
      * @param payPwdVo
      * @return

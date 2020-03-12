@@ -40,8 +40,11 @@
         <if test="queryListVo.animalName != null and queryListVo.animalName != ''">
             AND animal_name like CONCAT('%',#{queryListVo.animalName},'%')
         </if>
-        <if test="queryListVo.animalStatus != null and queryListVo.animalStatus != ''">
-            AND animal_status = #{queryListVo.animalStatus}
+        <if test="queryListVo.animalStatus != null and queryListVo.animalStatus.length > 0">
+            AND animal_status in
+            <foreach collection="queryListVo.animalStatus" open="(" close=")" separator="," item="animalStatus">
+                #{animalStatus}
+            </foreach>
         </if>
     </select>
 </mapper>

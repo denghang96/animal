@@ -59,4 +59,6 @@ public interface IUserService extends IService<AUser> {
      * @return
      */
     boolean deleteBatchByIds(ArrayList<Integer> delIds);
+
+    boolean checkPayPwd(Integer userId);
 }
