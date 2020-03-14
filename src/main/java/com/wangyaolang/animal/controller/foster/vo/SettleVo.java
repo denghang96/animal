@@ -5,20 +5,15 @@ import com.wangyaolang.animal.controller.exception.ParamErrorException;
 import lombok.Data;
 
 @Data
-public class QueryListVo extends BaseVO {
-
-    private Integer userId;
-
+public class SettleVo extends BaseVO {
+    private String fosterId;
     private String animalName;
-
-    private String animalType;
-
-    private String applyDate;
-
-    private String applyStatus;
-
-
-
+    private String userMoney;
+    private String settleDate;
+    private String animalSingleMoney;
+    private Float animalTotleMoney;
+    private String settleType;
+    private String arriveDate;
     @Override
     public void checkParam() throws ParamErrorException {
 

@@ -15,12 +15,14 @@
         <result column="apply_status" property="applyStatus" />
         <result column="user_tel" property="userTel" />
         <result column="apply_price" property="applyPrice" />
+        <result column="opinion" property="opinion" />
     </resultMap>
 
     <!-- 通用查询映射结果 -->
     <resultMap id="FosterInfoResultMap" type="com.wangyaolang.animal.controller.foster.vo.FosterInfoVo">
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
         <result column="animal_name" property="animalName" />
         <result column="animal_type" property="animalType" />
         <result column="animal_age" property="animalAge" />
@@ -32,8 +34,8 @@
         <result column="apply_price" property="applyPrice" />
     </resultMap>
     <select id="getList" resultMap="FosterInfoResultMap">
-        select user_id, animal_name, animal_type, animal_age, apply_date, animal_desc, animal_prove, apply_status,user_tel,apply_price
-        from a_foster
+        select f.id, f.user_id, u.user_name, animal_name, animal_type, animal_age, apply_date, animal_desc, animal_prove, apply_status,f.user_tel,apply_price/100 as apply_price, opinion
+        from a_foster f left join a_user u on f.user_id = u.id
         where 1 = 1
         <if test="queryListVo.userId != null and queryListVo.userId != ''">
             AND user_id = #{queryListVo.userId}
@@ -41,11 +43,17 @@
         <if test="queryListVo.applyDate != null and queryListVo.applyDate != ''">
             AND apply_date = #{queryListVo.applyDate}
         </if>
-        <if test="queryListVo.animalName != null and queryListVo.animalName != ''">
-            AND animal_name like CONCAT('%',#{queryListVo.animalName},'%')
+        <if test="queryListVo.applyStatus != null and queryListVo.applyStatus != ''">
+            AND apply_status = #{queryListVo.applyStatus}
         </if>
         <if test="queryListVo.animalType != null and queryListVo.animalType != ''">
             AND animal_type = #{queryListVo.animalType}
         </if>
+    </select>
+
+    <select id="getMoney" resultType="com.wangyaolang.animal.controller.foster.vo.SettleResponseVo">
+        select a.animal_date as arriveDate, a.animal_money/100 as animalSingleMoney, u.user_money/100 as userMoney
+        from a_foster f left join a_animal a on f.animal_id = a.id left join a_user u on f.user_id = u.id
+        where f.id = #{fosterId}
     </select>
 </mapper>

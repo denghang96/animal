@@ -10,6 +10,8 @@ public class FosterInfoVo extends BaseVO {
 
     private Integer userId;
 
+    private String userName;
+
     private String animalName;
 
     private String animalType;
@@ -22,11 +24,13 @@ public class FosterInfoVo extends BaseVO {
 
     private String animalProve;
 
-    private Integer applyStatus;
+    private String applyStatus;
 
     private String userTel;
 
-    private Integer applyPrice;
+    private Float applyPrice;
+
+    private String opinion;
 
     @Override
     public void checkParam() throws ParamErrorException {

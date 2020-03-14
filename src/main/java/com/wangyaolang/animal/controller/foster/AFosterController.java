@@ -4,14 +4,15 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wangyaolang.animal.controller.common.BaseResponseVO;
 import com.wangyaolang.animal.controller.common.TraceUtil;
 import com.wangyaolang.animal.controller.exception.ParamErrorException;
-import com.wangyaolang.animal.controller.foster.vo.FosterInfoVo;
-import com.wangyaolang.animal.controller.foster.vo.QueryListVo;
+import com.wangyaolang.animal.controller.foster.vo.*;
 import com.wangyaolang.animal.dao.entity.AFoster;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 import com.wangyaolang.animal.service.foster.IFosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -90,5 +91,66 @@ public class AFosterController {
         List<FosterInfoVo> list = fosterService.getList(page, queryListVo);
         page.setRecords(list);
         return BaseResponseVO.success(page);
+    }
+
+    /**
+     * 审核申请
+     * @return
+     * @throws CommonServiceExcetion
+     * @throws ParamErrorException
+     */
+    @RequestMapping(value = "sh",method = RequestMethod.POST)
+    public BaseResponseVO sh(@RequestBody FosterInfoVo fosterInfoVo) throws CommonServiceExcetion {
+        fosterService.sh(fosterInfoVo);
+        return BaseResponseVO.success();
+    }
+
+
+    /**
+     * 宠物到店
+     * @return
+     * @throws CommonServiceExcetion
+     * @throws ParamErrorException
+     */
+    @RequestMapping(value = "arrive",method = RequestMethod.POST)
+    public BaseResponseVO arrive(@RequestBody ArriveInfoVo arriveInfoVo){
+        fosterService.arrive(arriveInfoVo);
+        return BaseResponseVO.success();
+    }
+
+    /**
+     * 重置申请状态
+     * @return
+     * @throws CommonServiceExcetion
+     * @throws ParamErrorException
+     */
+    @RequestMapping(value = "reset")
+    public BaseResponseVO arrive(Integer fosterId){
+        fosterService.reset(fosterId);
+        return BaseResponseVO.success();
+    }
+
+    /**
+     * 结算前查询费用
+     * @return
+     * @throws CommonServiceExcetion
+     * @throws ParamErrorException
+     */
+    @RequestMapping(value = "getMoney")
+    public BaseResponseVO getMoney(SettleResquestVo settleResquestVo) throws ParseException {
+        SettleResponseVo settleResponseVo = fosterService.getMoney(settleResquestVo.getFosterId(), settleResquestVo.getSettleDate());
+        return BaseResponseVO.success(settleResponseVo);
+    }
+
+    /**
+     * 结算
+     * @return
+     * @throws CommonServiceExcetion
+     * @throws ParamErrorException
+     */
+    @RequestMapping(value = "settle",method = RequestMethod.POST)
+    public BaseResponseVO settle(@RequestBody SettleVo settleVo){
+        fosterService.settle(settleVo);
+        return BaseResponseVO.success();
     }
 }
