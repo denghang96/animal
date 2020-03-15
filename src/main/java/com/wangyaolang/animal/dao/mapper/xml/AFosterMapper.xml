@@ -49,11 +49,13 @@
         <if test="queryListVo.animalType != null and queryListVo.animalType != ''">
             AND animal_type = #{queryListVo.animalType}
         </if>
+        order by f.id desc
     </select>
 
     <select id="getMoney" resultType="com.wangyaolang.animal.controller.foster.vo.SettleResponseVo">
         select a.animal_date as arriveDate, a.animal_money/100 as animalSingleMoney, u.user_money/100 as userMoney
         from a_foster f left join a_animal a on f.animal_id = a.id left join a_user u on f.user_id = u.id
         where f.id = #{fosterId}
+        order by f.id desc
     </select>
 </mapper>

@@ -9,7 +9,6 @@
         <result column="user_tel" property="userTel" />
         <result column="user_id" property="userId" />
         <result column="adopt_date" property="adoptDate" />
-        <result column="adop_animal_id" property="adopAnimalId" />
         <result column="adopt_desc" property="adoptDesc" />
     </resultMap>
 
@@ -20,23 +19,27 @@
         <result column="user_tel" property="userTel" />
         <result column="user_id" property="userId" />
         <result column="adopt_date" property="adoptDate" />
-        <result column="adop_animal_id" property="adopAnimalId" />
         <result column="adopt_desc" property="adoptDesc" />
+        <result column="animal_no" property="animalNo" />
     </resultMap>
 
     <!--根据条件查询列表-->
     <select id="getList" resultMap="InterviewResultMap">
-        select id, user_name, user_tel, user_id, adopt_date, adop_animal_id, adopt_desc
-        from a_interview
+        select i.id, user_name, user_tel, i.adopt_date, adopt_desc,animal_no
+        from a_interview i left join a_animal a on i.animal_id = a.id
         where 1 = 1
         <if test="queryListVo.userId != null and queryListVo.userId != ''">
             AND user_id = #{queryListVo.userId}
         </if>
         <if test="queryListVo.userName != null and queryListVo.userName != ''">
-            AND user_name = #{queryListVo.userName}
+            AND user_name like concat("%",#{queryListVo.userName},"%")
         </if>
         <if test="queryListVo.adoptDate != null and queryListVo.adoptDate != ''">
             AND adopt_date = #{queryListVo.adoptDate}
         </if>
+        <if test="queryListVo.animalNo != null and queryListVo.animalNo != ''">
+            AND animal_no like concat("%",#{queryListVo.animalNo},"%")
+        </if>
+        order by i.id desc
     </select>
 </mapper>

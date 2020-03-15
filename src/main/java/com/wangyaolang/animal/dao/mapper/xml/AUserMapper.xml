@@ -29,5 +29,6 @@
         <if test="queryListVo.userSex != null and queryListVo.userSex != ''">
             AND user_sex = #{queryListVo.userSex}
         </if>
+        order by a_user.id desc
     </select>
 </mapper>

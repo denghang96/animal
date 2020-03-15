@@ -10,4 +10,21 @@
         <result column="type" property="type" />
         <result column="money" property="money" />
     </resultMap>
+
+    <select id="getList" resultType="com.wangyaolang.animal.controller.consume.vo.ConsumeInfoVo">
+        select
+            c.id, c.user_id, u.user_name, c.consume_date, c.type, c.money/100 as money
+        from
+            a_consume c left join a_user u on c.user_id = u.id
+        where 1 = 1
+        <if test="queryListVo.consumeDate != null and queryListVo.consumeDate != ''">
+            AND consume_date like concat('%', #{queryListVo.consumeDate}, '%')
+        </if>
+        <if test="queryListVo.userId != null and queryListVo.userId != ''">
+            AND c.user_id = #{queryListVo.userId}
+        </if>
+        <if test="queryListVo.type != null and queryListVo.type != ''">
+            AND type = #{queryListVo.type}
+        </if>
+    </select>
 </mapper>

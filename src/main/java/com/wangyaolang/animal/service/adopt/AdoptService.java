@@ -2,12 +2,15 @@ package com.wangyaolang.animal.service.adopt;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wangyaolang.animal.common.utils.TimeUtils;
 import com.wangyaolang.animal.controller.adopt.vo.AdoptInfoVo;
 import com.wangyaolang.animal.controller.adopt.vo.QueryListVo;
 import com.wangyaolang.animal.dao.entity.AAdopt;
 import com.wangyaolang.animal.dao.entity.AAnimal;
+import com.wangyaolang.animal.dao.entity.AConsume;
 import com.wangyaolang.animal.dao.entity.AUser;
 import com.wangyaolang.animal.dao.mapper.AAdoptMapper;
+import com.wangyaolang.animal.dao.mapper.AConsumeMapper;
 import com.wangyaolang.animal.service.animal.IAnimalService;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 import com.wangyaolang.animal.service.user.IUserService;
@@ -32,6 +35,9 @@ public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements I
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private AConsumeMapper aConsumeMapper;
 
     private Object lock = new Object(); //定义一把锁，防止多个管理员同时审核一个申请
 
@@ -77,9 +83,9 @@ public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements I
     @Override
     @Transactional
     public AdoptInfoVo sh(AdoptInfoVo adopt) throws CommonServiceExcetion {
+        AAnimal animal = animalService .getById(adopt.getAnimalId()) ;
         if("审批通过".equals(adopt.getApplyStatus())) {
             synchronized (lock) {
-                AAnimal animal = animalService .getById(adopt.getAnimalId()) ;
                 AUser user = userService.getById(adopt.getUserId());
                 if(!"待领养".equals(animal.getAnimalStatus())) {
                     throw new CommonServiceExcetion(501,"动物状态不合法，领养失败");
@@ -95,6 +101,16 @@ public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements I
                 animalService.updateById(animal);
             }
         }
+        //3.插入一条消费记录
+        AConsume aConsume = new AConsume();
+        aConsume.setConsumeDate(TimeUtils.getStringDate(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        aConsume.setMoney(animal.getAnimalMoney()
+
+        );
+        aConsume.setType("领养");
+        aConsume.setUserId(adopt.getUserId());
+        aConsumeMapper.insert(aConsume);
+
         updateAdopt(adopt);
         return adopt;
     }

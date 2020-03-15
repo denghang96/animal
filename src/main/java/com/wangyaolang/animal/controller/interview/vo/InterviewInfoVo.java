@@ -11,15 +11,17 @@ public class InterviewInfoVo extends BaseVO {
 
     private String userName;
 
-    private Integer userTel;
+    private String userTel;
 
     private Integer userId;
 
     private String adoptDate;
 
-    private Integer adopAnimalId;
+    private String animalNo;
 
     private String adoptDesc;
+
+    private Integer animalId;
 
     @Override
     public void checkParam() throws ParamErrorException {

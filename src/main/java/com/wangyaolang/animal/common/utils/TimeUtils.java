@@ -1,5 +1,6 @@
 package com.wangyaolang.animal.common.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,5 +31,10 @@ public class TimeUtils {
             return day2-day1;
         }
 
+    }
+
+    public static String getStringDate(Date date,String pattern) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return  simpleDateFormat.format(date);
     }
 }

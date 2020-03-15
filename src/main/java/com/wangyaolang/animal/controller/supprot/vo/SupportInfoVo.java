@@ -19,7 +19,6 @@ public class SupportInfoVo extends BaseVO {
     private String helpDesc;
 
     private String payPwd;
-
     @Override
     public void checkParam() throws ParamErrorException {
 

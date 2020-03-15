@@ -28,5 +28,6 @@
         <if test="queryListVo.amimalId != null and queryListVo.amimalId != ''">
             AND amimal_id = #{queryListVo.amimalId}
         </if>
+        order by a_comment.id desc
     </select>
 </mapper>

@@ -52,5 +52,6 @@
         <if test="queryListVo.applyStatus != null and queryListVo.applyStatus != ''">
             AND c.apply_status = #{queryListVo.applyStatus}
         </if>
+        order by c.id desc
     </select>
 </mapper>

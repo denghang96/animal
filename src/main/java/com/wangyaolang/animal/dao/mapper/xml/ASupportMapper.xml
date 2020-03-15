@@ -23,9 +23,9 @@
     </resultMap>
 
     <!--根据条件查询列表-->
-    <select id="getList" resultMap="SupportInfoResultMap">
-        select id, user_id, animal_id, help_date, help_money, help_desc
-        from a_support
+    <select id="getList" resultType="com.wangyaolang.animal.controller.supprot.vo.SupportListVo">
+        select animal_no, animal_name, user_name, help_date, help_money
+        from a_support s left join a_animal a on s.animal_id = a.id left join a_user u on s.user_id = u.id
         where 1 = 1
         <if test="queryListVo.userId != null and queryListVo.userId != ''">
             AND user_id = #{queryListVo.userId}
@@ -33,5 +33,6 @@
         <if test="queryListVo.helpDate != null and queryListVo.helpDate != ''">
             AND help_date = #{queryListVo.helpDate}
         </if>
+        order by s.id desc
     </select>
 </mapper>

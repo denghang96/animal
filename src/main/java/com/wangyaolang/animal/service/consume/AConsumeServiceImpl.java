@@ -1,5 +1,8 @@
-package com.wangyaolang.animal.service.consume.impl;
+package com.wangyaolang.animal.service.consume;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wangyaolang.animal.controller.consume.vo.ConsumeInfoVo;
+import com.wangyaolang.animal.controller.consume.vo.QueryListVo;
 import com.wangyaolang.animal.dao.entity.AConsume;
 import com.wangyaolang.animal.dao.mapper.AConsumeMapper;
 import com.wangyaolang.animal.dao.mapper.AFosterMapper;
@@ -8,6 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -22,4 +26,9 @@ public class AConsumeServiceImpl extends ServiceImpl<AConsumeMapper, AConsume> i
 
     @Resource
     private AConsumeMapper aConsumeMapper;
+
+    @Override
+    public List<ConsumeInfoVo> getList(Page page, QueryListVo queryListVo) {
+        return aConsumeMapper.getList(page, queryListVo);
+    }
 }

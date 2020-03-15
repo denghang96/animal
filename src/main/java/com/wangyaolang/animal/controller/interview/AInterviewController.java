@@ -11,6 +11,7 @@ import com.wangyaolang.animal.service.interview.IInterviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,9 +45,9 @@ public class AInterviewController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AInterview> list) throws CommonServiceExcetion {
-        boolean isSuccess = interviewService.removeByIds(list);
+    @RequestMapping(value = "del",method = RequestMethod.POST)
+    public BaseResponseVO del(@RequestBody ArrayList<Integer> delIds) throws CommonServiceExcetion {
+        boolean isSuccess = interviewService.deleteBatchByIds(delIds);
         if (!isSuccess) {
             throw new CommonServiceExcetion(500,"删除申请，请重试");
         }
@@ -59,7 +60,7 @@ public class AInterviewController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "update",method = RequestMethod.PUT)
+    @RequestMapping(value = "update",method = RequestMethod.POST)
     public BaseResponseVO updateInterview(@RequestBody InterviewInfoVo interview) throws CommonServiceExcetion {
         InterviewInfoVo interviewInfoVo = interviewService.updateInterview(interview);
         return BaseResponseVO.success(interviewInfoVo);

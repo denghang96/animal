@@ -4,11 +4,14 @@ import com.alibaba.druid.util.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wangyaolang.animal.common.utils.MD5Util;
+import com.wangyaolang.animal.common.utils.TimeUtils;
 import com.wangyaolang.animal.controller.supprot.vo.QueryListVo;
 import com.wangyaolang.animal.controller.supprot.vo.SupportInfoVo;
 import com.wangyaolang.animal.dao.entity.AAnimal;
+import com.wangyaolang.animal.dao.entity.AConsume;
 import com.wangyaolang.animal.dao.entity.ASupport;
 import com.wangyaolang.animal.dao.entity.AUser;
+import com.wangyaolang.animal.dao.mapper.AConsumeMapper;
 import com.wangyaolang.animal.dao.mapper.ASupportMapper;
 import com.wangyaolang.animal.service.animal.IAnimalService;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
@@ -29,6 +32,9 @@ public class SupprortService extends ServiceImpl<ASupportMapper, ASupport> imple
 
     @Resource
     private ASupportMapper aSupportMapper;
+
+    @Resource
+    private AConsumeMapper aConsumeMapper;
 
     @Autowired
     IAnimalService animalService;
@@ -60,7 +66,18 @@ public class SupprortService extends ServiceImpl<ASupportMapper, ASupport> imple
         aUser.setUserMoney(aUser.getUserMoney() - animal.getAnimalMoney());
         userService.updateById(aUser);
         animalService.updateById(animal);
+        String date = TimeUtils.getStringDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+        //3.插入一条消费记录
+        AConsume aConsume = new AConsume();
+        aConsume.setConsumeDate(date);
+        aConsume.setMoney((int) (animal.getAnimalMoney()*100));
+        aConsume.setType("助养");
+        aConsume.setUserId(aSupport.getUserId());
+        aConsumeMapper.insert(aConsume);
 
+        //4助养信息
+        aSupport.setHelpDate(date);
+        aSupport.setHelpMoney(animal.getAnimalMoney()*100);
         // 数据插入
         int isSuccess = aSupportMapper.insert(aSupport);
         // 判断插入是否成功
