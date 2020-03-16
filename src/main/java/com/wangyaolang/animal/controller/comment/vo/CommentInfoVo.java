@@ -13,7 +13,15 @@ public class CommentInfoVo extends BaseVO {
 
     private String comment;
 
-    private Integer amimalId;
+    private Integer animalId;
+
+    private String animalName;
+
+    private String animalNo;
+
+    private String userName;
+
+    private String userImage;
 
     @Override
     public void checkParam() throws ParamErrorException {

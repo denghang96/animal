@@ -6,8 +6,17 @@ import lombok.Data;
 
 @Data
 public class QueryListVo extends BaseVO {
+
     private Integer userId;
-    private Integer amimalId;
+
+    private Integer animalId;
+
+    private String animalName;
+
+    private String animalNo;
+
+    private String userName;
+
     @Override
     public void checkParam() throws ParamErrorException {
 

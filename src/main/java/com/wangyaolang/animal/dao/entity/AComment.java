@@ -3,6 +3,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+
 import java.io.Serializable;
 /**
  * <p>
@@ -12,6 +14,7 @@ import java.io.Serializable;
  * @author wangyaolang
  * @since 2020-02-29
  */
+@Data
 public class AComment extends Model<AComment> {
 
     private static final long serialVersionUID = 1L;
@@ -23,39 +26,9 @@ public class AComment extends Model<AComment> {
 
     private String comment;
 
-    private Integer amimalId;
+    private Integer animalId;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Integer getAmimalId() {
-        return amimalId;
-    }
-
-    public void setAmimalId(Integer amimalId) {
-        this.amimalId = amimalId;
-    }
 
     @Override
     protected Serializable pkVal() {
@@ -68,7 +41,7 @@ public class AComment extends Model<AComment> {
         ", id=" + id +
         ", userId=" + userId +
         ", comment=" + comment +
-        ", amimalId=" + amimalId +
+        ", amimalId=" + animalId +
         "}";
     }
 }

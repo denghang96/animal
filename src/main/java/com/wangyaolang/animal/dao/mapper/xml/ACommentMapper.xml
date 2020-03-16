@@ -7,27 +7,30 @@
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
         <result column="comment" property="comment" />
-        <result column="amimal_id" property="amimalId" />
+        <result column="animal_id" property="animalId" />
     </resultMap>
 
-    <resultMap id="CommentInfoResultMap" type="com.wangyaolang.animal.controller.comment.vo.CommentInfoVo">
-        <id column="id" property="id" />
-        <result column="user_id" property="userId" />
-        <result column="comment" property="comment" />
-        <result column="amimal_id" property="amimalId" />
-    </resultMap>
 
     <!--根据条件查询列表-->
-    <select id="getList" resultMap="CommentInfoResultMap">
-        select id, user_id, comment, amimal_id
-        from a_comment
+    <select id="getList" resultType="com.wangyaolang.animal.controller.comment.vo.CommentInfoVo">
+        select c.id, c.user_id, c.comment, c.animal_id, a.animal_name, a.animal_no, u.user_name,u.user_image
+        from a_comment c left join a_user u on u.id = c.user_id left join a_animal a on c.animal_id = a.id
         where 1 = 1
         <if test="queryListVo.userId != null and queryListVo.userId != ''">
             AND user_id = #{queryListVo.userId}
         </if>
-        <if test="queryListVo.amimalId != null and queryListVo.amimalId != ''">
-            AND amimal_id = #{queryListVo.amimalId}
+        <if test="queryListVo.animalId != null and queryListVo.animalId != ''">
+            AND amimal_id = #{queryListVo.animalId}
         </if>
-        order by a_comment.id desc
+        <if test="queryListVo.animalName != null and queryListVo.animalName != ''">
+            AND a.animal_name like concat('%', #{queryListVo.animalName} ,'%')
+        </if>
+        <if test="queryListVo.animalNo != null and queryListVo.animalNo != ''">
+            AND a.animal_no like concat('%', #{queryListVo.animalNo} ,'%')
+        </if>
+        <if test="queryListVo.userName != null and queryListVo.userName != ''">
+            AND a.user_name like concat('%', #{queryListVo.userName} ,'%')
+        </if>
+        order by c.id desc
     </select>
 </mapper>

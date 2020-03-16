@@ -81,7 +81,7 @@ public class ACommentController {
     }
 
     /**
-     * 根据查询条件查询动物列表
+     * 根据查询条件查询评论列表
      * @param queryListVo
      * @return
      * @throws CommonServiceExcetion
@@ -92,4 +92,6 @@ public class ACommentController {
         page.setRecords(list);
         return BaseResponseVO.success(page);
     }
+
+
 }
