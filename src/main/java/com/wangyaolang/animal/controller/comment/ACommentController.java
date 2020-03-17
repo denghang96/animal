@@ -12,6 +12,7 @@ import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,9 +48,9 @@ public class ACommentController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AComment> list) throws CommonServiceExcetion {
-        boolean isSuccess = commentService.removeByIds(list);
+    @RequestMapping(value = "del",method = RequestMethod.POST)
+    public BaseResponseVO del(@RequestBody ArrayList<Integer> delIds) throws CommonServiceExcetion {
+        boolean isSuccess = commentService.removeByIds(delIds);
         if (!isSuccess) {
             throw new CommonServiceExcetion(500,"删除失败，请重试");
         }
@@ -62,7 +63,7 @@ public class ACommentController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "update",method = RequestMethod.PUT)
+    @RequestMapping(value = "update",method = RequestMethod.POST)
     public BaseResponseVO updateComment(@RequestBody CommentInfoVo comment) throws CommonServiceExcetion {
         CommentInfoVo commentInfoVo = commentService.updateComment(comment);
         return BaseResponseVO.success(commentInfoVo);
