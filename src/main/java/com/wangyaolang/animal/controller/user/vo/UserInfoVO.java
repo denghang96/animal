@@ -52,6 +52,8 @@ public class UserInfoVO extends BaseVO {
      */
     private String expireTime;
 
+    private String[] access;
+
     @Override
     public void checkParam() throws ParamErrorException {
 

@@ -83,6 +83,13 @@ public class AUserController {
 
         userInfoVO.checkParam();
 
+        if ("1".equals(userInfoVO.getUserType())) {
+            String[] access = {"consumemanage", "consume"};
+            userInfoVO.setAccess(access);
+        }else {
+            String[] access = {""};
+            userInfoVO.setAccess(access);
+        }
         return BaseResponseVO.success(userInfoVO);
     }
 

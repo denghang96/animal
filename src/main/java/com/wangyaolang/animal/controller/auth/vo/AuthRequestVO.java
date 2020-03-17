@@ -13,7 +13,6 @@ public class AuthRequestVO extends BaseVO {
 
     private String userName;
     private String loginPwd;
-    private String userType;//1.管理员 2.会员
 
     @Override
     public void checkParam() throws ParamErrorException {
