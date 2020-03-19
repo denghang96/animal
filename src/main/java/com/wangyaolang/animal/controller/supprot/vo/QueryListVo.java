@@ -6,8 +6,11 @@ import lombok.Data;
 
 @Data
 public class QueryListVo extends BaseVO {
+
     private Integer userId;
-    private Integer helpDate;
+
+    private String helpDate;
+
     @Override
     public void checkParam() throws ParamErrorException {
 
