@@ -31,7 +31,7 @@
             AND user_id = #{queryListVo.userId}
         </if>
         <if test="queryListVo.helpDate != null and queryListVo.helpDate != ''">
-            AND help_date = #{queryListVo.helpDate}
+            AND help_date like concat('%',#{queryListVo.helpDate},''%'')
         </if>
         order by s.id desc
     </select>
