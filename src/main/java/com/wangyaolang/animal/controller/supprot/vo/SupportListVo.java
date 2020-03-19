@@ -19,4 +19,6 @@ public class SupportListVo implements Serializable {
     private String helpDate;
 
     private Float helpMoney;
+
+    private String animalTiltleImg;
 }
