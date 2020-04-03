@@ -13,6 +13,10 @@ public class AdoptInfoVo extends BaseVO {
 
     private Integer animalId;
 
+    private String animalTiltleImg;
+
+    private String animal_features;
+
     private String applyDate;
 
     private String applyStatus;
