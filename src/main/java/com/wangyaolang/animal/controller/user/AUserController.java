@@ -84,11 +84,18 @@ public class AUserController {
         userInfoVO.checkParam();
 
         if ("1".equals(userInfoVO.getUserType())) {
-            String[] access = {"consumemanage", "consume"};
+            String[] access = {
+                    "adminHome","user","usermanage","personCenter",
+                    "personInfo","animalmanage","animalAdd","supportmanage",
+                    "supportRecorde","interviewmanage","interview","consumemanage",
+                    "consume","approvalmanage","adoptmanage","fostermanage","commentmanage",
+                    "comment"};
             userInfoVO.setAccess(access);
+            userInfoVO.setHomeName("adminHome");
         }else {
-            String[] access = {""};
+            String[] access = {"animalHome","personCenter","personInfo","myFoster","myAdopt","mySupport"};
             userInfoVO.setAccess(access);
+            userInfoVO.setHomeName("animalHome");
         }
         return BaseResponseVO.success(userInfoVO);
     }

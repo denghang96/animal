@@ -52,7 +52,14 @@ public class UserInfoVO extends BaseVO {
      */
     private String expireTime;
 
+    /**
+     * 前段路由需要的权限数组
+     */
     private String[] access;
+    /**
+     * 前段根据homeName展示不同的首页
+     */
+    private String homeName;
 
     @Override
     public void checkParam() throws ParamErrorException {
