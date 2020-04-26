@@ -64,6 +64,8 @@ public class AUserController {
      */
     @RequestMapping(value = "update",method = RequestMethod.POST)
     public BaseResponseVO del(@RequestBody UserInfoVO userInfoVO) throws CommonServiceExcetion {
+        String userId = TraceUtil.getUserId();//获取当前登录用户的id
+        userInfoVO.setId(Integer.valueOf(userId));
         UserInfoVO u = userService.updateUserInfo(userInfoVO);
         return BaseResponseVO.success(u);
     }

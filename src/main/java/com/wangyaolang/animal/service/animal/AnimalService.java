@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service(("animalService"))
 public class AnimalService extends ServiceImpl<AAnimalMapper, AAnimal> implements IAnimalService  {

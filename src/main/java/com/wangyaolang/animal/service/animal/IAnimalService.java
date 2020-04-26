@@ -9,6 +9,7 @@ import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public interface IAnimalService extends IService<AAnimal> {
     /**
@@ -39,4 +40,5 @@ public interface IAnimalService extends IService<AAnimal> {
      * @return
      */
     boolean deleteBatchByIds(ArrayList<Integer> delIds);
+
 }
