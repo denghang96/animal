@@ -22,4 +22,8 @@ public class ConsumeInfoVo implements Serializable {
     private String type;
 
     private Float money;
+
+    private String animalNo;
+
+    private String animalName;
 }

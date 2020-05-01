@@ -73,6 +73,7 @@ public class SupprortService extends ServiceImpl<ASupportMapper, ASupport> imple
         aConsume.setMoney((int) (animal.getAnimalMoney()*100));
         aConsume.setType("助养");
         aConsume.setUserId(aSupport.getUserId());
+        aConsume.setAnimalId(Integer.valueOf(aSupport.getAnimalId()));
         aConsumeMapper.insert(aConsume);
 
         //4助养信息

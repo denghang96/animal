@@ -63,9 +63,21 @@ public class AUserController {
      * @throws CommonServiceExcetion
      */
     @RequestMapping(value = "update",method = RequestMethod.POST)
-    public BaseResponseVO del(@RequestBody UserInfoVO userInfoVO) throws CommonServiceExcetion {
+    public BaseResponseVO update(@RequestBody UserInfoVO userInfoVO) throws CommonServiceExcetion {
         String userId = TraceUtil.getUserId();//获取当前登录用户的id
         userInfoVO.setId(Integer.valueOf(userId));
+        UserInfoVO u = userService.updateUserInfo(userInfoVO);
+        return BaseResponseVO.success(u);
+    }
+
+    /**
+     * 充值
+     * @param userInfoVO
+     * @return
+     * @throws CommonServiceExcetion
+     */
+    @RequestMapping(value = "addMoney",method = RequestMethod.POST)
+    public BaseResponseVO addMoney(@RequestBody UserInfoVO userInfoVO) throws CommonServiceExcetion {
         UserInfoVO u = userService.updateUserInfo(userInfoVO);
         return BaseResponseVO.success(u);
     }
@@ -95,7 +107,7 @@ public class AUserController {
             userInfoVO.setAccess(access);
             userInfoVO.setHomeName("adminHome");
         }else {
-            String[] access = {"animalHome","personCenter","personInfo","myFoster","myAdopt","mySupport"};
+            String[] access = {"animalHome","personCenter","personInfo","myFoster","myAdopt","mySupport","consumemanage","consumeuser"};
             userInfoVO.setAccess(access);
             userInfoVO.setHomeName("animalHome");
         }

@@ -1,21 +1,20 @@
 package com.wangyaolang.animal.service.statistics;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wangyaolang.animal.controller.statistics.vo.AnimalTypeVo;
-import com.wangyaolang.animal.controller.statistics.vo.WebsiteNumVo;
+import com.wangyaolang.animal.common.utils.TimeUtils;
+import com.wangyaolang.animal.controller.statistics.vo.*;
 import com.wangyaolang.animal.dao.entity.AAnimal;
 import com.wangyaolang.animal.dao.entity.AUser;
 import com.wangyaolang.animal.dao.mapper.StatisticsMapper;
 import com.wangyaolang.animal.service.animal.IAnimalService;
 import com.wangyaolang.animal.service.comment.ICommentService;
+import com.wangyaolang.animal.service.consume.IAConsumeService;
 import com.wangyaolang.animal.service.user.IUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class StatisticsService implements IStatisticsService{
@@ -30,6 +29,7 @@ public class StatisticsService implements IStatisticsService{
 
     @Resource
     IAnimalService animalService;
+
 
     /**
      * 统计 用户总数、动物总数、评论总数、今日领养、今日助养、今日助养
@@ -84,5 +84,41 @@ public class StatisticsService implements IStatisticsService{
     public List<AnimalTypeVo> getAnimalTypeNum() {
         List<AnimalTypeVo> getAnimalTypeNumMap = statisticsMapper.getAnimalTypeNum();
         return getAnimalTypeNumMap;
+    }
+
+    @Override
+    public List<AnimalStatusVo> getAnimalStatusNum() {
+        List<AnimalStatusVo> animalStatusVo = statisticsMapper.getAnimalStatusNum();
+        return animalStatusVo;
+    }
+
+    @Override
+    public List<MoneyResponseVo> getMoneyNum() {
+        List<MoneyVo> moneyNum = statisticsMapper.getMoneyNum();
+        Set<String> typeSet = new HashSet<>(); // 所有类型： 领养，寄养，助养
+        for (int i = 0; i < moneyNum.size(); i++) {
+            typeSet.add(moneyNum.get(i).getType());
+        }
+        List<MoneyResponseVo> moneyResponseVoList = new ArrayList<>();
+        Iterator<String> iterator = typeSet.iterator();
+        while (iterator.hasNext()) {
+            MoneyResponseVo moneyResponseVo = new MoneyResponseVo();
+            moneyResponseVo.setType(iterator.next());
+            moneyResponseVoList.add(moneyResponseVo);
+        }
+        String[] recentDate = TimeUtils.getRecentDate(6);
+
+        for (int i = 0; i < moneyResponseVoList.size(); i++) {
+            for (int j = 0; j < recentDate.length; j++) {
+                for (int k = 0; k < moneyNum.size(); k++) {
+                    if (moneyResponseVoList.get(i).getType().equals(moneyNum.get(k).getType())
+                            && recentDate[j].equals(moneyNum.get(k).getDate())) {
+                        moneyResponseVoList.get(i).getMoney()[j] = moneyNum.get(k).getSumMoney();
+                    }
+                }
+            }
+        }
+        System.out.println("=======");
+        return moneyResponseVoList;
     }
 }

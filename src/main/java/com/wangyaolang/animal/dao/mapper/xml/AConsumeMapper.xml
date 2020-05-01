@@ -9,13 +9,14 @@
         <result column="consume_date" property="consumeDate" />
         <result column="type" property="type" />
         <result column="money" property="money" />
+        <result column="animal_id" property="animalId" />
     </resultMap>
 
     <select id="getList" resultType="com.wangyaolang.animal.controller.consume.vo.ConsumeInfoVo">
         select
-            c.id, c.user_id, u.user_name, c.consume_date, c.type, c.money/100 as money
+            c.id, c.user_id, u.user_name, c.consume_date, c.type, c.money/100 as money, a.animal_no, a.animal_name
         from
-            a_consume c left join a_user u on c.user_id = u.id
+            a_consume c left join a_user u on c.user_id = u.id left join a_animal a on c.animal_id = a.id
         where 1 = 1
         <if test="queryListVo.consumeDate != null and queryListVo.consumeDate != ''">
             AND consume_date like concat('%', #{queryListVo.consumeDate}, '%')
@@ -26,5 +27,9 @@
         <if test="queryListVo.type != null and queryListVo.type != ''">
             AND type = #{queryListVo.type}
         </if>
+        <if test="queryListVo.userName != null and queryListVo.userName != ''">
+            AND u.user_name like concat('%',#{queryListVo.userName},'%')
+        </if>
+        order by c.consume_date desc
     </select>
 </mapper>

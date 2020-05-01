@@ -7,4 +7,6 @@ public class QueryListVo {
     private String applyDate;
 
     private String applyStatus;
+
+    private String userName;
 }

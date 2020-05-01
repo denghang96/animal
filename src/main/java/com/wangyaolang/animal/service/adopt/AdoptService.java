@@ -109,6 +109,7 @@ public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements I
         );
         aConsume.setType("领养");
         aConsume.setUserId(adopt.getUserId());
+        aConsume.setAnimalId(adopt.getAnimalId());
         aConsumeMapper.insert(aConsume);
 
         updateAdopt(adopt);

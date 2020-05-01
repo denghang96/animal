@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wangyaolang.animal.controller.animal.vo.AnimalInfoVo;
 import com.wangyaolang.animal.controller.animal.vo.QueryListVo;
+import com.wangyaolang.animal.controller.statistics.vo.AnimalStatusVo;
 import com.wangyaolang.animal.dao.entity.AAnimal;
 import com.wangyaolang.animal.service.common.exception.CommonServiceExcetion;
 
@@ -40,5 +41,6 @@ public interface IAnimalService extends IService<AAnimal> {
      * @return
      */
     boolean deleteBatchByIds(ArrayList<Integer> delIds);
+
 
 }

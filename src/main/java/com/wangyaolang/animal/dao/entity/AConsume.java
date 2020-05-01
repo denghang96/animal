@@ -26,6 +26,8 @@ public class AConsume extends Model<AConsume> {
 
     private Integer money;
 
+    private Integer animalId;
+
     public Integer getId() {
         return id;
     }
@@ -66,19 +68,16 @@ public class AConsume extends Model<AConsume> {
         this.money = money;
     }
 
+    public Integer getAnimalId() {
+        return animalId;
+    }
+
+    public void setAnimalId(Integer animalId) {
+        this.animalId = animalId;
+    }
     @Override
     protected Serializable pkVal() {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return "AConsume{" +
-        ", id=" + id +
-        ", userId=" + userId +
-        ", consumeDate=" + consumeDate +
-        ", type=" + type +
-        ", money=" + money +
-        "}";
-    }
 }

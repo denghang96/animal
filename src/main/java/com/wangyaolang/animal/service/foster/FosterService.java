@@ -157,6 +157,7 @@ public class FosterService extends ServiceImpl<AFosterMapper, AFoster> implement
         aConsume.setMoney((int) (settleVo.getAnimalTotleMoney()*100));
         aConsume.setType("寄养");
         aConsume.setUserId(aFoster.getUserId());
+        aConsume.setAnimalId(aFoster.getAnimalId());
         aConsumeMapper.insert(aConsume);
         //4.更新动物状态
         AAnimal animal = aAnimalMapper.selectById(aFoster.getAnimalId());

@@ -13,6 +13,8 @@ public class QueryListVo extends BaseVO {
 
     private String userId;
 
+    private String userName;
+
     @Override
     public void checkParam() throws ParamErrorException {
 
