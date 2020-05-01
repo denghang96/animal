@@ -13,14 +13,14 @@
 
     <!--根据条件查询列表-->
     <select id="getList" resultType="com.wangyaolang.animal.controller.comment.vo.CommentInfoVo">
-        select c.id, c.user_id, c.comment, c.animal_id, a.animal_name, a.animal_no, u.user_name,u.user_image
+        select c.id, c.user_id, c.comment, c.animal_id, a.animal_name, a.animal_no, u.user_name,u.user_image,a.animal_type,u.user_tel
         from a_comment c left join a_user u on u.id = c.user_id left join a_animal a on c.animal_id = a.id
         where 1 = 1
         <if test="queryListVo.userId != null and queryListVo.userId != ''">
             AND c.user_id = #{queryListVo.userId}
         </if>
         <if test="queryListVo.animalId != null and queryListVo.animalId != ''">
-            AND c.amimal_id = #{queryListVo.animalId}
+            AND c.animal_id = #{queryListVo.animalId}
         </if>
         <if test="queryListVo.animalName != null and queryListVo.animalName != ''">
             AND a.animal_name like concat('%', #{queryListVo.animalName} ,'%')

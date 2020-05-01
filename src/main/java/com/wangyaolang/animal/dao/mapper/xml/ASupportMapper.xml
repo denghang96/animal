@@ -33,6 +33,15 @@
         <if test="queryListVo.helpDate != null and queryListVo.helpDate != ''">
             AND help_date like concat('%',#{queryListVo.helpDate},'%')
         </if>
+        <if test="queryListVo.animalNo != null and queryListVo.animalNo != ''">
+            AND animal_no like concat('%',#{queryListVo.animalNo},'%')
+        </if>
+        <if test="queryListVo.animalName != null and queryListVo.animalName != ''">
+            AND animal_name like concat('%',#{queryListVo.animalName},'%')
+        </if>
+        <if test="queryListVo.userName != null and queryListVo.userName != ''">
+            AND user_name like concat('%',#{queryListVo.userName},'%')
+        </if>
         order by s.id desc
     </select>
 </mapper>

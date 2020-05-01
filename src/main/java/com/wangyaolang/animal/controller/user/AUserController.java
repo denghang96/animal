@@ -107,7 +107,9 @@ public class AUserController {
             userInfoVO.setAccess(access);
             userInfoVO.setHomeName("adminHome");
         }else {
-            String[] access = {"animalHome","personCenter","personInfo","myFoster","myAdopt","mySupport","consumemanage","consumeuser"};
+            String[] access = {"animalHome","personCenter","personInfo",
+                    "myFoster","myAdopt","mySupport","consumemanage","consumeuser",
+                    "commentmanage","commentuser"};
             userInfoVO.setAccess(access);
             userInfoVO.setHomeName("animalHome");
         }

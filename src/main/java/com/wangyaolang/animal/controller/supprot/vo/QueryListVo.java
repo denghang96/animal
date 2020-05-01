@@ -11,6 +11,12 @@ public class QueryListVo extends BaseVO {
 
     private String helpDate;
 
+    private String animalNo;
+
+    private String userName;
+
+    private String animalName;
+
     @Override
     public void checkParam() throws ParamErrorException {
 

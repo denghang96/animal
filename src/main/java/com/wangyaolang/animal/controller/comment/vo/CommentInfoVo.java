@@ -23,6 +23,10 @@ public class CommentInfoVo extends BaseVO {
 
     private String userImage;
 
+    private String animalType;
+
+    private String userTel;
+
     @Override
     public void checkParam() throws ParamErrorException {
 

@@ -17,6 +17,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.alibaba.fastjson.serializer.SerializerFeature.WriteNullStringAsEmpty;
+
 
 @Configuration("defaultFastjsonConfig")
 @ConditionalOnClass(com.alibaba.fastjson.JSON.class)
@@ -39,10 +41,12 @@ public class DefaultFastjsonConfig {
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(
                 SerializerFeature.PrettyFormat,
-                SerializerFeature.WriteEnumUsingToString
+                SerializerFeature.WriteEnumUsingToString,
+                SerializerFeature.WriteNullStringAsEmpty
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         fastJsonConfig.setCharset(Charset.forName("utf-8"));
+
 
         //解决Long转json精度丢失的问题
         SerializeConfig serializeConfig = SerializeConfig.globalInstance;
