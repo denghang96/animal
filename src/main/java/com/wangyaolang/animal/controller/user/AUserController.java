@@ -142,9 +142,11 @@ public class AUserController {
      */
     @RequestMapping(value = "rePwd",method = RequestMethod.POST)
     public BaseResponseVO rePwd(@RequestBody RePwdVo rePwdVo) throws CommonServiceExcetion {
+        String userId = TraceUtil.getUserId();//获取当前登录用户的id
+        rePwdVo.setId(Integer.parseInt(userId));
         boolean isSuccess = userService.rePwd(rePwdVo);
         if (!isSuccess) {
-            return BaseResponseVO.serviceFailed("修改密码失败！");
+            return BaseResponseVO.serviceFailed("修改密码失败！密码错误");
         }
         return BaseResponseVO.success();
     }

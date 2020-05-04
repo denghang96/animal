@@ -159,7 +159,7 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
             aUserMapper.updateById(aUser);
             return true;
         }
-        aUserMapper.updateById(aUser);
+        //aUserMapper.updateById(aUser);
         return false;
     }
 
