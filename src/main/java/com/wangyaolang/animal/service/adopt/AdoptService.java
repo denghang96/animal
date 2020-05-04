@@ -1,5 +1,6 @@
 package com.wangyaolang.animal.service.adopt;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wangyaolang.animal.common.utils.TimeUtils;
@@ -48,6 +49,14 @@ public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements I
         AAdopt aAdopt = new AAdopt();
         BeanUtils.copyProperties(adoptInfoVo,aAdopt); // 讲两个对象中属性名想同的属性值进行拷贝，就不用一个一个手动先get再set
 
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("user_id",adoptInfoVo.getUserId());
+        queryWrapper.eq("apply_status","审批通过");
+        int count = this.count(queryWrapper);
+        if (count > 3) { //如果领养超过三个
+            throw new CommonServiceExcetion(501,"领养不能超过三个");
+        }
+
         // 数据插入
         int isSuccess = aAdoptMapper.insert(aAdopt);
 
@@ -87,6 +96,13 @@ public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements I
         if("审批通过".equals(adopt.getApplyStatus())) {
             synchronized (lock) {
                 AUser user = userService.getById(adopt.getUserId());
+                QueryWrapper queryWrapper = new QueryWrapper();
+                queryWrapper.eq("user_id",adopt.getUserId());
+                queryWrapper.eq("apply_status","审批通过");
+                int count = this.count(queryWrapper);
+                if (count > 3) { //如果领养超过三个
+                    throw new CommonServiceExcetion(501,"领养不能超过三个");
+                }
                 if(!"待领养".equals(animal.getAnimalStatus())) {
                     throw new CommonServiceExcetion(501,"动物状态不合法，领养失败");
                 }

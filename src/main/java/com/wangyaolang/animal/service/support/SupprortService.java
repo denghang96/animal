@@ -70,7 +70,7 @@ public class SupprortService extends ServiceImpl<ASupportMapper, ASupport> imple
         //3.插入一条消费记录
         AConsume aConsume = new AConsume();
         aConsume.setConsumeDate(date);
-        aConsume.setMoney((int) (animal.getAnimalMoney()*100));
+        aConsume.setMoney((int) (animal.getAnimalMoney()));
         aConsume.setType("助养");
         aConsume.setUserId(aSupport.getUserId());
         aConsume.setAnimalId(Integer.valueOf(aSupport.getAnimalId()));
@@ -78,7 +78,7 @@ public class SupprortService extends ServiceImpl<ASupportMapper, ASupport> imple
 
         //4助养信息
         aSupport.setHelpDate(date);
-        aSupport.setHelpMoney(animal.getAnimalMoney()*100);
+        aSupport.setHelpMoney(animal.getAnimalMoney());
         // 数据插入
         int isSuccess = aSupportMapper.insert(aSupport);
         // 判断插入是否成功
