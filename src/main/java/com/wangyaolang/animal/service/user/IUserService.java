@@ -61,4 +61,6 @@ public interface IUserService extends IService<AUser> {
     boolean deleteBatchByIds(ArrayList<Integer> delIds);
 
     boolean checkPayPwd(Integer userId);
+
+    boolean rePayPwd(RePayPwdVo rePwdVo) throws CommonServiceExcetion ;
 }

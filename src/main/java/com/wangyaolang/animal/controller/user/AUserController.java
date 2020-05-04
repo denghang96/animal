@@ -169,6 +169,23 @@ public class AUserController {
     }
 
     /**
+     * 修改支付支付密码
+     * @param rePwdVo
+     * @return
+     * @throws CommonServiceExcetion
+     */
+    @RequestMapping(value = "rePayPwd",method = RequestMethod.POST)
+    public BaseResponseVO rePayPwd(@RequestBody RePayPwdVo rePwdVo) throws CommonServiceExcetion {
+        Integer userId = Integer.valueOf(TraceUtil.getUserId());//获取当前登录用户的id
+        rePwdVo.setId(userId);
+        boolean isSuccess = userService.rePayPwd(rePwdVo);
+        if (!isSuccess) {
+            return BaseResponseVO.serviceFailed("设置支付密码失败！");
+        }
+        return BaseResponseVO.success();
+    }
+
+    /**
      * 检查是否设置了支付密码
      * @return
      * @throws CommonServiceExcetion

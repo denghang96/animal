@@ -203,4 +203,23 @@ public class UserService extends ServiceImpl<AUserMapper, AUser> implements IUse
         AUser user = this.getById(userId);
         return StringUtils.isEmpty(user.getPayPwd());
     }
+
+    @Override
+    public boolean rePayPwd(RePayPwdVo rePwdVo) throws CommonServiceExcetion {
+        AUser aUser = new AUser();
+        BeanUtils.copyProperties(rePwdVo,aUser);
+
+        AUser preAUser = aUserMapper.selectById(rePwdVo.getId());
+        boolean isSuccess = false;
+        if (preAUser.getPayPwd().equals(MD5Util.encrypt(rePwdVo.getOldPwd())) //如果支付密码相等
+                ||StringUtils.isEmpty(preAUser.getPayPwd())) { //或者以前没设置过支付密码
+            isSuccess = true;
+        }
+        if (isSuccess) {
+            aUser.setPayPwd(MD5Util.encrypt(rePwdVo.getPayPwd()));//新密码进行加密
+            aUserMapper.updateById(aUser);
+            return true;
+        }
+        return false;
+    }
 }
