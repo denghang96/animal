@@ -41,7 +41,7 @@ public class StatisticsService implements IStatisticsService{
 
         //用户总数
         QueryWrapper<AUser> aUserQueryWrapper = new QueryWrapper<>();
-        aUserQueryWrapper.eq("user_type","1"); //只统计普通会员
+        aUserQueryWrapper.eq("user_type","2"); //只统计普通会员
         int userNum = userService.count(aUserQueryWrapper);
         websiteNumVo.setUserNum(userNum);
 
