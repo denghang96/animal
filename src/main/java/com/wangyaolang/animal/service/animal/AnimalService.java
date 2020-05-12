@@ -1,5 +1,6 @@
 package com.wangyaolang.animal.service.animal;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wangyaolang.animal.controller.animal.vo.AnimalInfoVo;
@@ -29,12 +30,18 @@ public class AnimalService extends ServiceImpl<AAnimalMapper, AAnimal> implement
         AAnimal aAnimal = new AAnimal();
         BeanUtils.copyProperties(animalInfoVo,aAnimal); // 讲两个对象中属性名想同的属性值进行拷贝，就不用一个一个手动先get再set
 
+        QueryWrapper queryWrapper = new QueryWrapper(); //判断动物编号是否重复
+        queryWrapper.eq("animal_no", aAnimal.getAnimalNo());
+        Integer integer = animalMapper.selectCount(queryWrapper);
+        if (integer > 0) {
+            throw new CommonServiceExcetion(501,"动物编号重复！添加失败");
+        }
         // 数据插入
         int isSuccess = animalMapper.insert(aAnimal);
 
         // 判断插入是否成功
         if(isSuccess!=1){
-            throw new CommonServiceExcetion(501,"添加用户失败");
+            throw new CommonServiceExcetion(501,"添加动物失败");
         }
     }
 
@@ -50,7 +57,7 @@ public class AnimalService extends ServiceImpl<AAnimalMapper, AAnimal> implement
 
         // 判断插入是否成功
         if(isSuccess!=1){
-            throw new CommonServiceExcetion(501,"修改用户信息失败");
+            throw new CommonServiceExcetion(501,"修改动物信息失败");
         }
 
         return animalInfoVo;

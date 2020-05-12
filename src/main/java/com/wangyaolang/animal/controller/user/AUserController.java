@@ -1,6 +1,7 @@
 package com.wangyaolang.animal.controller.user;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wangyaolang.animal.common.utils.MD5Util;
 import com.wangyaolang.animal.controller.common.BaseResponseVO;
 import com.wangyaolang.animal.controller.common.TraceUtil;
 import com.wangyaolang.animal.controller.exception.ParamErrorException;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping(value = "user/")
@@ -216,4 +218,23 @@ public class AUserController {
         }
         return BaseResponseVO.success();
     }
+
+    /**
+     * 验证支付密码
+     * @param payPwd
+     * @return
+     * @throws CommonServiceExcetion
+     */
+    @RequestMapping(value = "checkPayPwdIsOk",method = RequestMethod.GET)
+    public BaseResponseVO checkPayPwdIsOk(String payPwd) throws CommonServiceExcetion {
+        Integer userId = Integer.valueOf(TraceUtil.getUserId());//获取当前登录用户的id
+        AUser byId = userService.getById(userId);
+        if (Objects.equals(MD5Util.encrypt(payPwd), byId.getPayPwd()) ){
+            return BaseResponseVO.success();
+        }else {
+            return BaseResponseVO.serviceFailed("支付密码错误");
+        }
+
+    }
+
 }

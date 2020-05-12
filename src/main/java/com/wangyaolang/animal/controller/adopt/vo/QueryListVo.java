@@ -9,4 +9,6 @@ public class QueryListVo {
     private String applyStatus;
 
     private String userName;
+
+    private String userId;
 }

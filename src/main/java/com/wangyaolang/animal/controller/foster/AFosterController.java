@@ -47,9 +47,9 @@ public class AFosterController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AFoster> list) throws CommonServiceExcetion {
-        boolean isSuccess = fosterService.removeByIds(list);
+    @RequestMapping(value = "del",method = RequestMethod.POST)
+    public BaseResponseVO del(@RequestBody List<String> list) throws CommonServiceExcetion {
+        boolean isSuccess = fosterService.deleteBatchByIds(list);
         if (!isSuccess) {
             throw new CommonServiceExcetion(500,"删除申请失败，请重试");
         }

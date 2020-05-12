@@ -48,8 +48,8 @@ public class AAdoptController {
      * @throws ParamErrorException
      */
     @RequestMapping(value = "del",method = RequestMethod.POST)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<AAdopt> list) throws CommonServiceExcetion {
-        boolean isSuccess = adoptService.removeByIds(list);
+    public BaseResponseVO del(@RequestBody List<String> list) throws CommonServiceExcetion {
+        boolean isSuccess = adoptService.deleteBatchByIds(list);
         if (!isSuccess) {
             throw new CommonServiceExcetion(500,"删除申请失败，请重试");
         }

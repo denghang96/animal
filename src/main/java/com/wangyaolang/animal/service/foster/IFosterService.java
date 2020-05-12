@@ -63,4 +63,11 @@ public interface IFosterService extends IService<AFoster> {
      * @param settleVo
      */
     void settle(SettleVo settleVo);
+
+    /**
+     * 删除
+     * @param list
+     * @return
+     */
+    boolean deleteBatchByIds(List<String> list);
 }

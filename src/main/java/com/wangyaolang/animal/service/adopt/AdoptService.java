@@ -112,7 +112,7 @@ public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements I
                 animal.setAnimalStatus("已领养");
                 SimpleDateFormat sdf =   new SimpleDateFormat( " yyyy-MM-dd" );
                 animal.setAnimalDate(sdf.format(new Date()));
-                user.setUserMoney(user.getUserMoney() - animal.getAnimalMoney());
+                user.setUserMoney(user.getUserMoney() - animal.getAnimalMoney()); //扣钱
                 userService.updateById(user);
                 animalService.updateById(animal);
             }
@@ -130,5 +130,10 @@ public class AdoptService extends ServiceImpl<AAdoptMapper, AAdopt> implements I
 
         updateAdopt(adopt);
         return adopt;
+    }
+
+    @Override
+    public boolean deleteBatchByIds(List<String> list) {
+        return aAdoptMapper.deleteBatchIds(list)>0?true:false;
     }
 }

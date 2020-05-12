@@ -164,4 +164,9 @@ public class FosterService extends ServiceImpl<AFosterMapper, AFoster> implement
         animal.setAnimalStatus("寄养结束");
         aAnimalMapper.updateById(animal);
     }
+
+    @Override
+    public boolean deleteBatchByIds(List<String> list) {
+        return aFosterMapper.deleteBatchIds(list)>0?true:false;
+    }
 }

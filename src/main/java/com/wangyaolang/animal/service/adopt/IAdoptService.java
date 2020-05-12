@@ -39,4 +39,6 @@ public interface IAdoptService extends IService<AAdopt> {
      * @return
      */
     AdoptInfoVo sh(AdoptInfoVo adopt) throws CommonServiceExcetion;
+
+    boolean deleteBatchByIds(List<String> list);
 }

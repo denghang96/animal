@@ -57,6 +57,9 @@
         <if test="queryListVo.userName != null and queryListVo.userName != ''">
             AND a.user_name like concat('%',#{queryListVo.userName},'%')
         </if>
+        <if test="queryListVo.userId != null and queryListVo.userId != ''">
+            AND a.id = #{queryListVo.userId}
+        </if>
         order by c.id desc
     </select>
 </mapper>

@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @since 2020-02-29
  */
 @Data
-public class AFoster extends Model<AFoster> {
+public class AFoster extends Model<AFoster> implements  Serializable{
 
     private static final long serialVersionUID = 1L;
 
