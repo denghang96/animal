@@ -22,11 +22,11 @@
 
     <select id="getMoneyNum" resultType="com.wangyaolang.animal.controller.statistics.vo.MoneyVo">
         SELECT
-            consume_date as `date`, type as `type`, sum(money)/100 as sumMoney
+            DATE_FORMAT(consume_date, '%Y-%m-%d') as `date`, type as `type`, sum(money)/100 as sumMoney
         from
             a_consume
         where
-            consume_date between DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 6 DAY),'%Y-%m-%d') and DATE_FORMAT(CURDATE(),'%Y-%m-%d')
+            DATE_FORMAT(consume_date, '%Y-%m-%d') between DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 6 DAY),'%Y-%m-%d') and DATE_FORMAT(CURDATE(),'%Y-%m-%d')
         group by
             date, type
     </select>
