@@ -108,4 +108,10 @@ public class SupprortService extends ServiceImpl<ASupportMapper, ASupport> imple
     public List<SupportInfoVo> getList(Page page, QueryListVo queryListVo) {
         return aSupportMapper.getList(page, queryListVo);
     }
+
+    @Override
+    @Transactional
+    public boolean deleteBatchByIds(List<Integer> delIds) {
+        return  aSupportMapper.deleteBatchIds(delIds)>0?true:false;
+    }
 }

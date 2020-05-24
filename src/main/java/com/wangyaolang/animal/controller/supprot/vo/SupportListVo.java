@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Data
 public class SupportListVo implements Serializable {
 
+    private Integer id;
+
     private String animalNo;
 
     private String animalName;

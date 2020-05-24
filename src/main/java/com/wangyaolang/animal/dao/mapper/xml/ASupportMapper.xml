@@ -24,7 +24,7 @@
 
     <!--根据条件查询列表-->
     <select id="getList" resultType="com.wangyaolang.animal.controller.supprot.vo.SupportListVo">
-        select animal_no, animal_name, user_name, help_date, help_money,animal_tiltle_img
+        select s.id, animal_no, animal_name, user_name, help_date, help_money,animal_tiltle_img
         from a_support s left join a_animal a on s.animal_id = a.id left join a_user u on s.user_id = u.id
         where 1 = 1
         <if test="queryListVo.userId != null and queryListVo.userId != ''">
