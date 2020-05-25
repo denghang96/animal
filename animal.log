@@ -1,332 +1,67 @@
-2020-05-05 10:48:05.858  INFO 7044 --- [restartedMain] c.wangyaolang.animal.AnimalApplication   : Starting AnimalApplication on DESKTOP-D0C8O3T with PID 7044 (G:\animal\target\classes started by denghang in G:\animal)
-2020-05-05 10:48:05.882 DEBUG 7044 --- [restartedMain] c.wangyaolang.animal.AnimalApplication   : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
-2020-05-05 10:48:05.886  INFO 7044 --- [restartedMain] c.wangyaolang.animal.AnimalApplication   : No active profile set, falling back to default profiles: default
-2020-05-05 10:48:06.091  INFO 7044 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-05 10:48:06.118  INFO 7044 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-05 10:48:08.996  INFO 7044 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-05 10:48:09.008  INFO 7044 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-05 10:48:09.009  INFO 7044 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-05-05 10:48:09.094  INFO 7044 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-05 10:48:09.096  INFO 7044 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2973 ms
-2020-05-05 10:48:09.698  INFO 7044 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
-2020-05-05 10:48:10.246 DEBUG 7044 --- [restartedMain] c.w.a.c.common.filter.AuthFilter         : Filter 'jwtAuthenticationTokenFilter' configured for use
-2020-05-05 10:48:10.615  INFO 7044 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-05 10:48:10.958  INFO 7044 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-05 10:48:11.023  INFO 7044 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-05 10:48:11.026  INFO 7044 --- [restartedMain] c.wangyaolang.animal.AnimalApplication   : Started AnimalApplication in 6.712 seconds (JVM running for 8.52)
-2020-05-05 10:50:07.690  INFO 7044 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-05-05 10:50:07.690  INFO 7044 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-05-05 10:50:07.717  INFO 7044 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 27 ms
-2020-05-05 10:50:09.165 ERROR 7044 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
-
-io.jsonwebtoken.ExpiredJwtException: JWT expired at 2020-05-03T23:02:29Z. Current time: 2020-05-05T10:50:09Z, a difference of 128860137 milliseconds.  Allowed clock skew: 0 milliseconds.
-	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:385) ~[jjwt-0.9.0.jar:0.9.0]
-	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:481) ~[jjwt-0.9.0.jar:0.9.0]
-	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:541) ~[jjwt-0.9.0.jar:0.9.0]
-	at com.wangyaolang.animal.controller.auth.util.JwtTokenUtil.getClaimFromToken(JwtTokenUtil.java:71) ~[classes/:na]
-	at com.wangyaolang.animal.controller.auth.util.JwtTokenUtil.getUsernameFromToken(JwtTokenUtil.java:27) ~[classes/:na]
-	at com.wangyaolang.animal.controller.common.filter.AuthFilter.doFilterInternal(AuthFilter.java:64) ~[classes/:na]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123) ~[druid-1.1.10.jar:1.1.10]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar:5.2.3.RELEASE]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_60]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_60]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar:9.0.30]
-	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_60]
-
-2020-05-05 10:50:15.823 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:15.984 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:16.018 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:16.183 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:16.184 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:16.187 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:16.191 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 10:50:16.193 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 2(String)
-2020-05-05 10:50:16.196 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 10:50:16.222 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:16.223 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:16.224 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:16.227 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 10:50:16.227 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 2(String)
-2020-05-05 10:50:16.230 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 10:50:16.756 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:16.757 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:16.760 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:16.763 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:16.764 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:16.766 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.mapper.AUserMapper.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM a_user WHERE user_type = ? 
-2020-05-05 10:50:16.766 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:16.769 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.mapper.AUserMapper.selectCount   : ==> Parameters: 1(String)
-2020-05-05 10:50:16.771 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.d.m.StatisticsMapper.getMoneyNum   : ==>  Preparing: SELECT consume_date as `date`, type as `type`, sum(money)/100 as sumMoney from a_consume where consume_date between DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 6 DAY),'%Y-%m-%d') and DATE_FORMAT(CURDATE(),'%Y-%m-%d') group by date, type 
-2020-05-05 10:50:16.775 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.mapper.AUserMapper.selectCount   : <==      Total: 1
-2020-05-05 10:50:16.776 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:16.777 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:16.780 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:16.781 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal 
-2020-05-05 10:50:16.782 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 
-2020-05-05 10:50:16.783 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.d.m.S.getAnimalStatusNum           : ==>  Preparing: select animal_status as status, count(*) as num from a_animal group by animal_status 
-2020-05-05 10:50:16.784 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 10:50:16.776 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:16.785 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.ACommentMapper.selectCount     : ==>  Preparing: SELECT COUNT( 1 ) FROM a_comment 
-2020-05-05 10:50:16.786 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.ACommentMapper.selectCount     : ==> Parameters: 
-2020-05-05 10:50:16.786 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:16.789 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:16.791 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.ACommentMapper.selectCount     : <==      Total: 1
-2020-05-05 10:50:16.794 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 10:50:16.795 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 已领养(String)
-2020-05-05 10:50:16.796 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 10:50:16.800 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 10:50:16.802 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.d.m.S.getAnimalStatusNum           : ==> Parameters: 
-2020-05-05 10:50:16.805 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.d.m.S.getAnimalStatusNum           : <==      Total: 4
-2020-05-05 10:50:16.807 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.d.m.StatisticsMapper.getMoneyNum   : ==> Parameters: 
-2020-05-05 10:50:16.806 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 已领养(String)
-2020-05-05 10:50:16.811 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.d.m.S.getAnimalTypeNum             : ==>  Preparing: select animal_type as name, count(*) as value from a_animal group by animal_type 
-2020-05-05 10:50:16.813 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.d.m.S.getAnimalTypeNum             : ==> Parameters: 
-2020-05-05 10:50:16.814 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.d.m.StatisticsMapper.getMoneyNum   : <==      Total: 8
-2020-05-05 10:50:16.818 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 10:50:16.822 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 10:50:16.823 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 正在寄养(String)
-2020-05-05 10:50:16.824 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 10:50:16.825 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.d.m.S.getAnimalTypeNum             : <==      Total: 3
-2020-05-05 10:50:45.683 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:45.685 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:45.690 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:45.693 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 10:50:45.694 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 2(String)
-2020-05-05 10:50:45.696 DEBUG 7044 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 10:50:46.633 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:46.634 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:46.635 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:46.638 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:46.638 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:46.639 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:46.639 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:46.640 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:46.641 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:50:46.641 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 10:50:46.641 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.d.m.S.getAnimalTypeNum             : ==>  Preparing: select animal_type as name, count(*) as value from a_animal group by animal_type 
-2020-05-05 10:50:46.642 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.d.m.S.getAnimalTypeNum             : ==> Parameters: 
-2020-05-05 10:50:46.642 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.StatisticsMapper.getMoneyNum   : ==>  Preparing: SELECT consume_date as `date`, type as `type`, sum(money)/100 as sumMoney from a_consume where consume_date between DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 6 DAY),'%Y-%m-%d') and DATE_FORMAT(CURDATE(),'%Y-%m-%d') group by date, type 
-2020-05-05 10:50:46.643 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.StatisticsMapper.getMoneyNum   : ==> Parameters: 
-2020-05-05 10:50:46.645 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.d.m.S.getAnimalTypeNum             : <==      Total: 3
-2020-05-05 10:50:46.648 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:46.650 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.StatisticsMapper.getMoneyNum   : <==      Total: 8
-2020-05-05 10:50:46.652 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.d.m.S.getAnimalStatusNum           : ==>  Preparing: select animal_status as status, count(*) as num from a_animal group by animal_status 
-2020-05-05 10:50:46.653 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.d.m.S.getAnimalStatusNum           : ==> Parameters: 
-2020-05-05 10:50:46.655 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:50:46.656 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.d.m.S.getAnimalStatusNum           : <==      Total: 4
-2020-05-05 10:50:46.662 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.mapper.AUserMapper.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM a_user WHERE user_type = ? 
-2020-05-05 10:50:46.662 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.mapper.AUserMapper.selectCount   : ==> Parameters: 1(String)
-2020-05-05 10:50:46.663 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.mapper.AUserMapper.selectCount   : <==      Total: 1
-2020-05-05 10:50:46.665 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal 
-2020-05-05 10:50:46.665 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 
-2020-05-05 10:50:46.666 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 10:50:46.668 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.ACommentMapper.selectCount     : ==>  Preparing: SELECT COUNT( 1 ) FROM a_comment 
-2020-05-05 10:50:46.668 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.ACommentMapper.selectCount     : ==> Parameters: 
-2020-05-05 10:50:46.670 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.ACommentMapper.selectCount     : <==      Total: 1
-2020-05-05 10:50:46.673 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 10:50:46.673 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 已领养(String)
-2020-05-05 10:50:46.675 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 10:50:46.676 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 10:50:46.677 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 已领养(String)
-2020-05-05 10:50:46.678 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 10:50:46.680 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 10:50:46.680 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 正在寄养(String)
-2020-05-05 10:50:46.681 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 10:51:19.521 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:51:19.522 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:51:19.525 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:51:19.535 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:51:19.535 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:51:19.536 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:51:19.538 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 10:51:19.538 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 3(String)
-2020-05-05 10:51:19.540 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 10:51:19.547 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:51:19.547 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:51:19.549 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:51:19.552 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 10:51:19.552 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 3(String)
-2020-05-05 10:51:19.554 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 10:51:19.699 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:51:19.700 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:51:19.701 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:51:19.781 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_animal WHERE 1 = 1 AND animal_status IN (?, ?) 
-2020-05-05 10:51:19.783 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String)
-2020-05-05 10:51:19.791 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: select * from a_animal where 1 =1 AND animal_status in ( ? , ? ) order by a_animal.id desc LIMIT ?,? 
-2020-05-05 10:51:19.797 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String), 0(Long), 8(Long)
-2020-05-05 10:51:19.803 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AAnimalMapper.getList   : <==      Total: 4
-2020-05-05 10:58:39.321 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:58:39.322 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:58:39.324 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:58:39.340 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:58:39.340 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:58:39.342 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:58:39.345 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 10:58:39.346 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 3(String)
-2020-05-05 10:58:39.347 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 10:58:39.357 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:58:39.357 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:58:39.358 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:58:39.360 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 10:58:39.361 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 3(String)
-2020-05-05 10:58:39.362 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 10:58:39.506 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:58:39.507 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:58:39.511 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:58:39.526 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_animal WHERE 1 = 1 AND animal_status IN (?, ?) 
-2020-05-05 10:58:39.528 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String)
-2020-05-05 10:58:39.531 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: select * from a_animal where 1 =1 AND animal_status in ( ? , ? ) order by a_animal.id desc LIMIT ?,? 
-2020-05-05 10:58:39.535 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String), 0(Long), 8(Long)
-2020-05-05 10:58:39.544 DEBUG 7044 --- [http-nio-8080-exec-3] c.w.a.dao.mapper.AAnimalMapper.getList   : <==      Total: 4
-2020-05-05 10:59:02.610 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:59:02.612 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:59:02.615 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:59:02.629 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_animal WHERE 1 = 1 AND animal_status IN (?, ?) 
-2020-05-05 10:59:02.629 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String)
-2020-05-05 10:59:02.631 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: select * from a_animal where 1 =1 AND animal_status in ( ? , ? ) order by a_animal.id desc LIMIT ?,? 
-2020-05-05 10:59:02.631 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String), 0(Long), 8(Long)
-2020-05-05 10:59:02.634 DEBUG 7044 --- [http-nio-8080-exec-7] c.w.a.dao.mapper.AAnimalMapper.getList   : <==      Total: 4
-2020-05-05 10:59:03.554 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:59:03.555 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:59:03.559 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:59:03.570 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_animal WHERE 1 = 1 AND animal_status IN (?, ?) 
-2020-05-05 10:59:03.571 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String)
-2020-05-05 10:59:03.574 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: select * from a_animal where 1 =1 AND animal_status in ( ? , ? ) order by a_animal.id desc LIMIT ?,? 
-2020-05-05 10:59:03.575 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String), 0(Long), 8(Long)
-2020-05-05 10:59:03.588 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AAnimalMapper.getList   : <==      Total: 4
-2020-05-05 10:59:28.003 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:59:28.005 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:59:28.010 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:59:28.017 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 10:59:28.019 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 3(String)
-2020-05-05 10:59:28.023 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 10:59:28.234 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:59:28.244 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:59:28.247 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:59:28.279 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AFosterMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_foster f LEFT JOIN a_user u ON f.user_id = u.id WHERE 1 = 1 AND user_id = ? 
-2020-05-05 10:59:28.294 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AFosterMapper.getList   : ==> Parameters: 3(Integer)
-2020-05-05 10:59:28.301 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AFosterMapper.getList   : ==>  Preparing: select f.id, f.user_id, u.user_name, animal_name, animal_type, animal_age, apply_date, animal_desc, animal_prove, apply_status,f.user_tel,apply_price/100 as apply_price, opinion from a_foster f left join a_user u on f.user_id = u.id where 1 = 1 AND user_id = ? order by f.id desc LIMIT ?,? 
-2020-05-05 10:59:28.303 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AFosterMapper.getList   : ==> Parameters: 3(Integer), 0(Long), 6(Long)
-2020-05-05 10:59:28.305 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AFosterMapper.getList   : <==      Total: 2
-2020-05-05 10:59:47.434 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 10:59:47.435 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: user(String)
-2020-05-05 10:59:47.438 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 10:59:47.449 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_foster f LEFT JOIN a_user u ON f.user_id = u.id WHERE 1 = 1 AND user_id = ? AND animal_type = ? 
-2020-05-05 10:59:47.453 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : ==> Parameters: 3(Integer), 鼠(String)
-2020-05-05 10:59:47.456 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : ==>  Preparing: select f.id, f.user_id, u.user_name, animal_name, animal_type, animal_age, apply_date, animal_desc, animal_prove, apply_status,f.user_tel,apply_price/100 as apply_price, opinion from a_foster f left join a_user u on f.user_id = u.id where 1 = 1 AND user_id = ? AND animal_type = ? order by f.id desc LIMIT ?,? 
-2020-05-05 10:59:47.460 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : ==> Parameters: 3(Integer), 鼠(String), 0(Long), 6(Long)
-2020-05-05 10:59:47.462 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : <==      Total: 1
-2020-05-05 11:00:46.281 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:00:46.281 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:00:46.282 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:00:46.293 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:00:46.293 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:00:46.294 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:00:46.296 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 11:00:46.296 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 2(String)
-2020-05-05 11:00:46.297 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 11:00:46.305 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:00:46.305 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:00:46.306 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:00:46.307 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 11:00:46.308 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 2(String)
-2020-05-05 11:00:46.309 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 11:00:46.743 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:00:46.745 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:00:46.749 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:00:46.756 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:00:46.757 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:00:46.760 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:00:46.762 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:00:46.762 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:00:46.766 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:00:46.768 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.mapper.AUserMapper.selectCount   : ==>  Preparing: SELECT COUNT( 1 ) FROM a_user WHERE user_type = ? 
-2020-05-05 11:00:46.769 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.mapper.AUserMapper.selectCount   : ==> Parameters: 1(String)
-2020-05-05 11:00:46.769 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:00:46.770 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.mapper.AUserMapper.selectCount   : <==      Total: 1
-2020-05-05 11:00:46.772 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.S.getAnimalStatusNum           : ==>  Preparing: select animal_status as status, count(*) as num from a_animal group by animal_status 
-2020-05-05 11:00:46.772 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:00:46.772 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.S.getAnimalStatusNum           : ==> Parameters: 
-2020-05-05 11:00:46.774 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.d.m.StatisticsMapper.getMoneyNum   : ==>  Preparing: SELECT consume_date as `date`, type as `type`, sum(money)/100 as sumMoney from a_consume where consume_date between DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 6 DAY),'%Y-%m-%d') and DATE_FORMAT(CURDATE(),'%Y-%m-%d') group by date, type 
-2020-05-05 11:00:46.776 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.d.m.StatisticsMapper.getMoneyNum   : ==> Parameters: 
-2020-05-05 11:00:46.782 DEBUG 7044 --- [http-nio-8080-exec-9] c.w.a.d.m.S.getAnimalStatusNum           : <==      Total: 4
-2020-05-05 11:00:46.783 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal 
-2020-05-05 11:00:46.784 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 
-2020-05-05 11:00:46.788 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 11:00:46.789 DEBUG 7044 --- [http-nio-8080-exec-8] c.w.a.d.m.StatisticsMapper.getMoneyNum   : <==      Total: 8
-2020-05-05 11:00:46.789 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.ACommentMapper.selectCount     : ==>  Preparing: SELECT COUNT( 1 ) FROM a_comment 
-2020-05-05 11:00:46.790 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.ACommentMapper.selectCount     : ==> Parameters: 
-2020-05-05 11:00:46.791 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.ACommentMapper.selectCount     : <==      Total: 1
-2020-05-05 11:00:46.794 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 11:00:46.794 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:00:46.795 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 已领养(String)
-2020-05-05 11:00:46.796 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.d.m.S.getAnimalTypeNum             : ==>  Preparing: select animal_type as name, count(*) as value from a_animal group by animal_type 
-2020-05-05 11:00:46.796 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 11:00:46.797 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.d.m.S.getAnimalTypeNum             : ==> Parameters: 
-2020-05-05 11:00:46.798 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 11:00:46.798 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 已领养(String)
-2020-05-05 11:00:46.798 DEBUG 7044 --- [http-nio-8080-exec-10] c.w.a.d.m.S.getAnimalTypeNum             : <==      Total: 3
-2020-05-05 11:00:46.799 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 11:00:46.801 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : ==>  Preparing: SELECT COUNT( 1 ) FROM a_animal WHERE animal_date = ? AND animal_status = ? 
-2020-05-05 11:00:46.801 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : ==> Parameters: 2020-05-05(String), 正在寄养(String)
-2020-05-05 11:00:46.802 DEBUG 7044 --- [http-nio-8080-exec-6] c.w.a.d.m.AAnimalMapper.selectCount      : <==      Total: 1
-2020-05-05 11:01:35.133 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:01:35.136 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:01:35.140 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:01:35.142 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 11:01:35.144 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 2(String)
-2020-05-05 11:01:35.149 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 11:01:35.307 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:01:35.307 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:01:35.308 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:01:35.312 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_foster f LEFT JOIN a_user u ON f.user_id = u.id WHERE 1 = 1 
-2020-05-05 11:01:35.313 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : ==> Parameters: 
-2020-05-05 11:01:35.315 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : ==>  Preparing: select f.id, f.user_id, u.user_name, animal_name, animal_type, animal_age, apply_date, animal_desc, animal_prove, apply_status,f.user_tel,apply_price/100 as apply_price, opinion from a_foster f left join a_user u on f.user_id = u.id where 1 = 1 order by f.id desc LIMIT ?,? 
-2020-05-05 11:01:35.315 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : ==> Parameters: 0(Long), 6(Long)
-2020-05-05 11:01:35.317 DEBUG 7044 --- [http-nio-8080-exec-1] c.w.a.dao.mapper.AFosterMapper.getList   : <==      Total: 4
-2020-05-05 11:02:33.871 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:02:33.872 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:02:33.875 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:02:33.878 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
-2020-05-05 11:02:33.890 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 2(String)
-2020-05-05 11:02:33.892 DEBUG 7044 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
-2020-05-05 11:02:34.108 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
-2020-05-05 11:02:34.109 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
-2020-05-05 11:02:34.110 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
-2020-05-05 11:02:34.115 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AFosterMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_foster f LEFT JOIN a_user u ON f.user_id = u.id WHERE 1 = 1 
-2020-05-05 11:02:34.115 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AFosterMapper.getList   : ==> Parameters: 
-2020-05-05 11:02:34.117 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AFosterMapper.getList   : ==>  Preparing: select f.id, f.user_id, u.user_name, animal_name, animal_type, animal_age, apply_date, animal_desc, animal_prove, apply_status,f.user_tel,apply_price/100 as apply_price, opinion from a_foster f left join a_user u on f.user_id = u.id where 1 = 1 order by f.id desc LIMIT ?,? 
-2020-05-05 11:02:34.118 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AFosterMapper.getList   : ==> Parameters: 0(Long), 6(Long)
-2020-05-05 11:02:34.121 DEBUG 7044 --- [http-nio-8080-exec-5] c.w.a.dao.mapper.AFosterMapper.getList   : <==      Total: 4
+2020-05-25 19:31:33.986  INFO 6804 --- [restartedMain] c.wangyaolang.animal.AnimalApplication   : Starting AnimalApplication on DESKTOP-C26NH04 with PID 6804 (F:\petHouse\target\classes started by asus in F:\petHouse)
+2020-05-25 19:31:33.995 DEBUG 6804 --- [restartedMain] c.wangyaolang.animal.AnimalApplication   : Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2020-05-25 19:31:33.995  INFO 6804 --- [restartedMain] c.wangyaolang.animal.AnimalApplication   : No active profile set, falling back to default profiles: default
+2020-05-25 19:31:34.355  INFO 6804 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-25 19:31:34.355  INFO 6804 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-25 19:31:39.712  INFO 6804 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-05-25 19:31:39.752  INFO 6804 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:31:39.752  INFO 6804 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-05-25 19:31:39.762  INFO 6804 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.14] of the APR based Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.23]
+2020-05-25 19:31:39.762  INFO 6804 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.14] using APR version [1.6.2].
+2020-05-25 19:31:39.762  INFO 6804 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-05-25 19:31:39.762  INFO 6804 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-05-25 19:31:40.941  INFO 6804 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017]
+2020-05-25 19:31:41.231  INFO 6804 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:31:41.231  INFO 6804 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6876 ms
+2020-05-25 19:31:42.341  INFO 6804 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2020-05-25 19:31:43.230 DEBUG 6804 --- [restartedMain] c.w.a.c.common.filter.AuthFilter         : Filter 'jwtAuthenticationTokenFilter' configured for use
+2020-05-25 19:31:43.940  INFO 6804 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-25 19:31:44.290  INFO 6804 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-05-25 19:31:44.371  INFO 6804 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-05-25 19:31:44.371  INFO 6804 --- [restartedMain] c.wangyaolang.animal.AnimalApplication   : Started AnimalApplication in 12.584 seconds (JVM running for 19.012)
+2020-05-25 19:34:14.670  INFO 6804 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-25 19:34:14.670  INFO 6804 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-25 19:34:14.681  INFO 6804 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2020-05-25 19:34:22.778 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
+2020-05-25 19:34:23.787 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: wyl(String)
+2020-05-25 19:34:23.897 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
+2020-05-25 19:34:23.954 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
+2020-05-25 19:34:23.955 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 2(String)
+2020-05-25 19:34:24.007 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
+2020-05-25 19:35:41.287 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
+2020-05-25 19:35:41.287 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: zm(String)
+2020-05-25 19:35:41.287 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
+2020-05-25 19:35:41.357 DEBUG 6804 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
+2020-05-25 19:35:41.357 DEBUG 6804 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: zm(String)
+2020-05-25 19:35:41.367 DEBUG 6804 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
+2020-05-25 19:35:41.367 DEBUG 6804 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
+2020-05-25 19:35:41.367 DEBUG 6804 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 8(String)
+2020-05-25 19:35:41.367 DEBUG 6804 --- [http-nio-8080-exec-9] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
+2020-05-25 19:35:41.401 DEBUG 6804 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
+2020-05-25 19:35:41.402 DEBUG 6804 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: zm(String)
+2020-05-25 19:35:41.404 DEBUG 6804 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
+2020-05-25 19:35:41.406 DEBUG 6804 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
+2020-05-25 19:35:41.406 DEBUG 6804 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 8(String)
+2020-05-25 19:35:41.408 DEBUG 6804 --- [http-nio-8080-exec-6] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
+2020-05-25 19:35:41.990 DEBUG 6804 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
+2020-05-25 19:35:41.992 DEBUG 6804 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: zm(String)
+2020-05-25 19:35:42.001 DEBUG 6804 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
+2020-05-25 19:35:42.486 DEBUG 6804 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: SELECT COUNT(1) FROM a_animal WHERE 1 = 1 AND animal_status IN (?, ?) 
+2020-05-25 19:35:42.489 DEBUG 6804 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String)
+2020-05-25 19:35:42.574 DEBUG 6804 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AAnimalMapper.getList   : ==>  Preparing: select * from a_animal where 1 =1 AND animal_status in ( ? , ? ) order by a_animal.id desc LIMIT ?,? 
+2020-05-25 19:35:42.577 DEBUG 6804 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AAnimalMapper.getList   : ==> Parameters: 待助养(String), 待领养(String), 0(Long), 8(Long)
+2020-05-25 19:35:42.602 DEBUG 6804 --- [http-nio-8080-exec-10] c.w.a.dao.mapper.AAnimalMapper.getList   : <==      Total: 8
+2020-05-25 19:35:44.745 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
+2020-05-25 19:35:44.746 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: zm(String)
+2020-05-25 19:35:44.748 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
+2020-05-25 19:35:44.753 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE id=? 
+2020-05-25 19:35:44.755 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : ==> Parameters: 8(String)
+2020-05-25 19:35:44.760 DEBUG 6804 --- [http-nio-8080-exec-2] c.w.a.dao.mapper.AUserMapper.selectById  : <==      Total: 1
+2020-05-25 19:35:45.068 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==>  Preparing: SELECT id,user_name,login_pwd,user_tel,pay_pwd,user_age,user_sex,user_image,user_type,user_money,expire_time FROM a_user WHERE user_name = ? 
+2020-05-25 19:35:45.068 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : ==> Parameters: zm(String)
+2020-05-25 19:35:45.073 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.AUserMapper.selectList  : <==      Total: 1
+2020-05-25 19:35:45.125 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.ACommentMapper.getList  : ==>  Preparing: SELECT COUNT(1) FROM a_comment c LEFT JOIN a_user u ON u.id = c.user_id LEFT JOIN a_animal a ON c.animal_id = a.id WHERE 1 = 1 AND c.user_id = ? 
+2020-05-25 19:35:45.211 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.ACommentMapper.getList  : ==> Parameters: 8(Integer)
+2020-05-25 19:35:45.303 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.ACommentMapper.getList  : ==>  Preparing: select c.id, c.user_id, c.comment, c.animal_id, a.animal_name, a.animal_no, u.user_name,u.user_image,a.animal_type,u.user_tel from a_comment c left join a_user u on u.id = c.user_id left join a_animal a on c.animal_id = a.id where 1 = 1 AND c.user_id = ? order by c.id desc LIMIT ?,? 
+2020-05-25 19:35:45.305 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.ACommentMapper.getList  : ==> Parameters: 8(Integer), 0(Long), 10(Long)
+2020-05-25 19:35:45.318 DEBUG 6804 --- [http-nio-8080-exec-4] c.w.a.dao.mapper.ACommentMapper.getList  : <==      Total: 3
