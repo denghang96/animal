@@ -47,9 +47,9 @@ public class SupportController {
      * @throws CommonServiceExcetion
      * @throws ParamErrorException
      */
-    @RequestMapping(value = "del",method = RequestMethod.DELETE)
-    public BaseResponseVO del(@RequestParam(value = "delIds") List<ASupport> list) throws CommonServiceExcetion {
-        boolean isSuccess = supportService.removeByIds(list);
+    @RequestMapping(value = "del",method = RequestMethod.POST)
+    public BaseResponseVO del(@RequestBody List<Integer> delIds) throws CommonServiceExcetion {
+        boolean isSuccess = supportService.deleteBatchByIds(delIds);
         if (!isSuccess) {
             throw new CommonServiceExcetion(500,"删除失败，请重试");
         }

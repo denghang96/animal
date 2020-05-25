@@ -30,4 +30,11 @@ public interface ISupportService  extends IService<ASupport> {
      * @return
      */
     List<SupportInfoVo> getList(Page page, QueryListVo queryListVo);
+
+    /**
+     * 要删除的主键
+     * @param delIds
+     * @return
+     */
+    boolean deleteBatchByIds(List<Integer> delIds);
 }
